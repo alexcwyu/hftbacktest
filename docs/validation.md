@@ -12,22 +12,22 @@ Current recorded status: **blocked**. Interpreter fallback evidence and native p
 
 | Step | Exact command | Exit | Elapsed seconds | Evidence |
 |---|---|---:|---:|---|
-| python-sync | `uv sync --project py-hftbacktest --all-groups --all-extras --python 3.15` | 2 | 0.78 | [hftbacktest-python-sync.log](../../docs/maintenance-2026-10-12/hftbacktest-python-sync.log) |
-| python314-sync | `uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8` | 0 | 689.59 | [hftbacktest-python314-sync.log](../../docs/maintenance-2026-10-12/hftbacktest-python314-sync.log) |
-| cargo-test | `cargo test --workspace` | 101 | 329.29 | [hftbacktest-cargo-test.log](../../docs/maintenance-2026-10-12/hftbacktest-cargo-test.log) |
-| cargo-tests-fixed-builder | `cargo test --workspace` | 101 | 3.41 | [hftbacktest-cargo-tests-fixed-builder.log](../../docs/maintenance-2026-10-12/hftbacktest-cargo-tests-fixed-builder.log) |
-| build | `uv build --project py-hftbacktest` | 0 | 479.76 | [hftbacktest-build.log](../../docs/maintenance-2026-10-12/hftbacktest-build.log) |
-| cargo-tests-current-api | `cargo test --workspace` | 101 | 4.19 | [hftbacktest-cargo-tests-current-api.log](../../docs/maintenance-2026-10-12/hftbacktest-cargo-tests-current-api.log) |
-| cargo-tests-fixed-examples | `cargo test --workspace` | 101 | 7.39 | [hftbacktest-cargo-tests-fixed-examples.log](../../docs/maintenance-2026-10-12/hftbacktest-cargo-tests-fixed-examples.log) |
-| cargo-tests-current-examples | `cargo test --workspace` | 101 | 30.75 | [hftbacktest-cargo-tests-current-examples.log](../../docs/maintenance-2026-10-12/hftbacktest-cargo-tests-current-examples.log) |
-| python-tests | `uv run --project py-hftbacktest --no-sync pytest py-hftbacktest/tests` | 1 | 5.43 | [hftbacktest-python-tests.log](../../docs/maintenance-2026-10-12/hftbacktest-python-tests.log) |
-| python-unittest | `uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests` | 1 | 1.0 | [hftbacktest-python-unittest.log](../../docs/maintenance-2026-10-12/hftbacktest-python-unittest.log) |
-| cargo-tests-current-docs | `cargo test --workspace` | 101 | 29.5 | [hftbacktest-cargo-tests-current-docs.log](../../docs/maintenance-2026-10-12/hftbacktest-cargo-tests-current-docs.log) |
-| python-upgrade | `uv lock --project py-hftbacktest --upgrade --python 3.14.8` | 0 | 1.03 | [hftbacktest-python-upgrade.log](../../docs/maintenance-2026-10-12/hftbacktest-python-upgrade.log) |
-| python-final-sync | `uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8` | 0 | 606.87 | [hftbacktest-python-final-sync.log](../../docs/maintenance-2026-10-12/hftbacktest-python-final-sync.log) |
-| cargo-tests-final | `cargo test --workspace` | 0 | 37.07 | [hftbacktest-cargo-tests-final.log](../../docs/maintenance-2026-10-12/hftbacktest-cargo-tests-final.log) |
-| build-final | `uv build --project py-hftbacktest` | 0 | 388.28 | [hftbacktest-build-final.log](../../docs/maintenance-2026-10-12/hftbacktest-build-final.log) |
-| python-unittest-latest | `uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests` | 1 | 0.98 | [hftbacktest-python-unittest-latest.log](../../docs/maintenance-2026-10-12/hftbacktest-python-unittest-latest.log) |
+| python-sync | `uv sync --project py-hftbacktest --all-groups --all-extras --python 3.15` | 2 | 0.78 | [check record](maintenance/index.html) |
+| python314-sync | `uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8` | 0 | 689.59 | [check record](maintenance/index.html) |
+| cargo-test | `cargo test --workspace` | 101 | 329.29 | [check record](maintenance/index.html) |
+| cargo-tests-fixed-builder | `cargo test --workspace` | 101 | 3.41 | [check record](maintenance/index.html) |
+| build | `uv build --project py-hftbacktest` | 0 | 479.76 | [check record](maintenance/index.html) |
+| cargo-tests-current-api | `cargo test --workspace` | 101 | 4.19 | [check record](maintenance/index.html) |
+| cargo-tests-fixed-examples | `cargo test --workspace` | 101 | 7.39 | [check record](maintenance/index.html) |
+| cargo-tests-current-examples | `cargo test --workspace` | 101 | 30.75 | [check record](maintenance/index.html) |
+| python-tests | `uv run --project py-hftbacktest --no-sync pytest py-hftbacktest/tests` | 1 | 5.43 | [check record](maintenance/index.html) |
+| python-unittest | `uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests` | 1 | 1.0 | [check record](maintenance/index.html) |
+| cargo-tests-current-docs | `cargo test --workspace` | 101 | 29.5 | [check record](maintenance/index.html) |
+| python-upgrade | `uv lock --project py-hftbacktest --upgrade --python 3.14.8` | 0 | 1.03 | [check record](maintenance/index.html) |
+| python-final-sync | `uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8` | 0 | 606.87 | [check record](maintenance/index.html) |
+| cargo-tests-final | `cargo test --workspace` | 0 | 37.07 | [check record](maintenance/index.html) |
+| build-final | `uv build --project py-hftbacktest` | 0 | 388.28 | [check record](maintenance/index.html) |
+| python-unittest-latest | `uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests` | 1 | 0.98 | [check record](maintenance/index.html) |
 
 ## Test summaries and failures
 
