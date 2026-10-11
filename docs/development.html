@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HftBacktest — Development Guide</title><style>
+:root{color-scheme:light dark;--bg:#f6f8fa;--paper:#fff;--fg:#182332;--muted:#526274;--line:#d9e0e7;--accent:#1769aa}
+@media(prefers-color-scheme:dark){:root{--bg:#111820;--paper:#192330;--fg:#e6edf3;--muted:#a0b3c5;--line:#344354;--accent:#71b7ee}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,sans-serif}
+header{border-bottom:1px solid var(--line);padding:16px max(24px,calc((100vw - 1120px)/2));background:var(--paper);font-size:14px}
+main{max-width:1120px;margin:32px auto;padding:40px 48px;background:var(--paper);border:1px solid var(--line);border-radius:12px}
+h1,h2,h3,h4{line-height:1.3;scroll-margin-top:24px}h1{font-size:2.1rem}h2{margin-top:2.5em;border-bottom:1px solid var(--line);padding-bottom:.35em}h3{margin-top:1.8em}
+a{color:var(--accent);text-underline-offset:3px}code{font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg);border-radius:4px;padding:2px 5px}pre{overflow:auto;border:1px solid var(--line);background:var(--bg);padding:16px;border-radius:7px}pre code{padding:0;background:none}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left}th{background:var(--bg)}blockquote{border-left:4px solid var(--accent);margin:16px 0;padding:4px 20px;color:var(--muted)}
+.diagram{overflow-x:auto;margin:24px 0;padding:20px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#182332}.mermaid{border:0;background:none;text-align:center}.mermaid svg{height:auto;max-width:100%}details{font-size:13px;color:#526274}.headerlink{margin-left:.4em;font-size:.7em;text-decoration:none;color:var(--muted)}
+main{min-width:0;overflow-wrap:anywhere}table,pre{max-width:100%}.diagram svg{display:block}
+th,td{min-width:120px;overflow-wrap:normal}
+@media(max-width:740px){main{margin:0;padding:24px 18px;border:0;border-radius:0}h1{font-size:1.7rem}.diagram{padding:8px}}
+@media print{header,details,.headerlink{display:none}body,main{background:#fff;color:#000;border:0;margin:0;padding:0}a{color:#000}.diagram,pre{break-inside:avoid}}
+</style></head><body><header>Engineering documentation · <a href="development.md">Markdown source</a></header><main><h1 id="hftbacktest-development-guide">HftBacktest — Development Guide<a class="headerlink" href="#hftbacktest-development-guide" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Last Updated</strong>: 2026-04-07T00:00:00Z
+<strong>Git Hash</strong>: <code>a5e4a18</code></p>
+</blockquote>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Minimum Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rust toolchain</td>
+<td>1.91.1</td>
+<td>Build Rust crates</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.11</td>
+<td>Python bindings and strategies</td>
+</tr>
+<tr>
+<td>Maturin</td>
+<td>1.7+</td>
+<td>Build PyO3 Python extension</td>
+</tr>
+<tr>
+<td>Numba</td>
+<td>0.61+</td>
+<td>JIT compilation of strategy functions</td>
+</tr>
+<tr>
+<td>NumPy</td>
+<td>2.0–2.2</td>
+<td>Data arrays</td>
+</tr>
+</tbody>
+</table>
+<h3 id="install-rust">Install Rust<a class="headerlink" href="#install-rust" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# Ensure the required minimum version
+rustup install 1.91.1
+rustup default 1.91.1
+</code></pre>
+<h3 id="install-python-bindings-development">Install Python Bindings (Development)<a class="headerlink" href="#install-python-bindings-development" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># Clone the repository
+git clone https://github.com/nkaz001/hftbacktest.git
+cd hftbacktest
+
+# Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate   # Linux/macOS
+# .venv\Scripts\activate    # Windows
+
+# Install build tools
+pip install maturin
+
+# Build and install the Python extension in editable mode
+cd py-hftbacktest
+maturin develop --release   # Release build (recommended for performance)
+# OR
+maturin develop             # Debug build (faster compile, slower runtime)
+</code></pre>
+<h3 id="install-from-pypi-end-users">Install from PyPI (End Users)<a class="headerlink" href="#install-from-pypi-end-users" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">pip install hftbacktest
+</code></pre>
+<h3 id="install-rust-crate-only">Install Rust Crate Only<a class="headerlink" href="#install-rust-crate-only" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># Add to Cargo.toml
+[dependencies]
+hftbacktest = { version = &quot;0.9.4&quot;, features = [&quot;backtest&quot;, &quot;live&quot;] }
+
+# Or build from source
+cargo build --release --package hftbacktest
+</code></pre>
+<h3 id="build-the-connector-live-trading">Build the Connector (Live Trading)<a class="headerlink" href="#build-the-connector-live-trading" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">cargo build --release --package connector
+# Binary: target/release/connector
+</code></pre>
+<p>Run the connector:</p>
+<pre><code class="language-bash">./target/release/connector --name bf --connector binancefutures --config binancefutures.toml
+</code></pre>
+<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h2>
+<pre><code>hftbacktest/                        # Workspace root
+├── Cargo.toml                      # Workspace manifest (resolver v2)
+├── README.rst                      # Project overview
+├── ROADMAP.md                      # Planned features
+│
+├── hftbacktest/                    # Core Rust crate (crates.io: hftbacktest)
+│   ├── Cargo.toml                  # version = &quot;0.9.4&quot;, features: backtest/live/s3
+│   └── src/
+│       ├── lib.rs                  # Crate entry, feature flags
+│       ├── prelude.rs              # Re-exports of common types
+│       ├── types.rs                # Event, Order, Value, LiveError, etc.
+│       ├── backtest/
+│       │   ├── mod.rs              # MultiAssetMultiExchangeBacktest, builder, errors
+│       │   ├── state.rs            # State&lt;AT, FM&gt;: position/balance/fee
+│       │   ├── recorder.rs         # Snapshot recorder
+│       │   ├── order.rs            # OrderBus (local↔exchange communication)
+│       │   ├── assettype.rs        # LinearAsset / InverseAsset
+│       │   ├── data/               # NpyDTyped reader, DataSource, S3 support
+│       │   ├── models/
+│       │   │   ├── latency.rs      # ConstantLatency, IntpOrderLatency
+│       │   │   ├── queue.rs        # RiskAdverse, ProbQueue, L3FIFO models
+│       │   │   └── fee.rs          # FlatPerTrade, TradingQty, TradingValue
+│       │   ├── proc/
+│       │   │   ├── mod.rs          # LocalProcessor + Processor traits
+│       │   │   ├── local.rs        # Local processor impl
+│       │   │   ├── nopartialfillexchange.rs
+│       │   │   ├── partialfillexchange.rs
+│       │   │   ├── l3_local.rs
+│       │   │   └── l3_nopartialfillexchange.rs
+│       │   └── evs.rs              # EventSet / EventIntentKind
+│       ├── depth/
+│       │   ├── mod.rs              # MarketDepth, L2MarketDepth, L3MarketDepth traits
+│       │   ├── hashmapmarketdepth.rs
+│       │   ├── roivectormarketdepth.rs
+│       │   ├── btreemarketdepth.rs
+│       │   └── fuse.rs
+│       ├── live/                   # Live bot (feature = &quot;live&quot;)
+│       └── utils/
+│
+├── hftbacktest-derive/             # Procedural macro crate (NpyDTyped derive)
+│
+├── py-hftbacktest/                 # Python bindings crate
+│   ├── Cargo.toml
+│   ├── pyproject.toml              # Maturin config, version = &quot;2.4.4&quot;
+│   ├── src/
+│   │   ├── lib.rs                  # PyO3 module definition
+│   │   ├── backtest.rs             # Backtest builder bindings
+│   │   ├── depth.rs                # Depth type bindings
+│   │   ├── order.rs                # Order type bindings
+│   │   └── live.rs                 # Live bot bindings
+│   └── hftbacktest/               # Python package
+│       ├── __init__.py             # Public API, version = &quot;2.4.4&quot;
+│       ├── binding.py              # Numba jitclass wrappers
+│       ├── order.py                # Order jitclass + constants
+│       ├── types.py                # Event flags + NumPy dtypes
+│       ├── state.py                # StateValues access
+│       ├── recorder.py             # Recorder Python wrapper
+│       └── intrinsic.py
+│
+├── connector/                      # Live exchange connector binary
+│   ├── Cargo.toml
+│   └── src/
+│       ├── main.rs
+│       ├── connector.rs
+│       ├── binancefutures/
+│       ├── binancespot/
+│       └── bybit/
+│
+└── collector/                      # Market data collector binary
+    └── src/
+</code></pre>
+<h2 id="configuration-reference">Configuration Reference<a class="headerlink" href="#configuration-reference" title="Permanent link">&para;</a></h2>
+<h3 id="backtestasset-builder-python">BacktestAsset Builder (Python)<a class="headerlink" href="#backtestasset-builder-python" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">from hftbacktest import BacktestAsset
+
+asset = (
+    BacktestAsset()
+
+    # --- Data ---
+    .data([&quot;path/to/data.npz&quot;])           # Feed data file(s) or ndarray(s)
+    .initial_snapshot(&quot;snapshot.npz&quot;)     # Optional: start-of-day book snapshot
+
+    # --- Asset Type ---
+    .linear_asset(1.0)                    # Linear (value = qty * price * contract_size)
+    .inverse_asset(1.0)                   # Inverse (value = qty / price * contract_size)
+
+    # --- Latency Model ---
+    .constant_latency(100_000, 100_000)   # entry_ns, response_ns
+    .intp_order_latency([&quot;latency.npz&quot;])  # Historical interpolated latency
+
+    # --- Queue / Fill Model ---
+    .risk_adverse_queue_model()           # Conservative: fills only on trades
+    .prob_queue_model(func)               # Probabilistic fill model
+    .l3_fifo_queue_model()               # FIFO from L3 data
+
+    # --- Exchange Model ---
+    .no_partial_fill_exchange()           # Orders fill fully or not at all
+    .partial_fill_exchange()             # Allows partial fills
+
+    # --- Fee Model ---
+    .trading_value_fee_model(-0.00005, 0.0007)  # maker_fee, taker_fee
+    .flat_per_trade_fee_model(0.1)              # fixed fee per trade
+)
+</code></pre>
+<h3 id="connector-configuration-toml">Connector Configuration (TOML)<a class="headerlink" href="#connector-configuration-toml" title="Permanent link">&para;</a></h3>
+<pre><code class="language-toml"># binancefutures.toml example
+[exchange]
+api_key = &quot;YOUR_API_KEY&quot;
+api_secret = &quot;YOUR_API_SECRET&quot;
+testnet = true
+
+[[instruments]]
+symbol = &quot;btcusdt&quot;
+tick_size = 0.1
+lot_size = 0.001
+</code></pre>
+<p>Run:</p>
+<pre><code class="language-bash">connector --name bf --connector binancefutures --config binancefutures.toml
+</code></pre>
+<h3 id="cargo-feature-flags">Cargo Feature Flags<a class="headerlink" href="#cargo-feature-flags" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backtest</code></td>
+<td>yes</td>
+<td>Backtesting engine</td>
+</tr>
+<tr>
+<td><code>live</code></td>
+<td>yes</td>
+<td>Live trading bot</td>
+</tr>
+<tr>
+<td><code>s3</code></td>
+<td>no</td>
+<td>S3 data source support (requires <code>aws-sdk-s3</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Enable only backtest to minimize binary size:</p>
+<pre><code class="language-toml">hftbacktest = { version = &quot;0.9.4&quot;, default-features = false, features = [&quot;backtest&quot;] }
+</code></pre>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash"># Rust tests
+cargo test --package hftbacktest
+cargo test --package hftbacktest --all-features
+
+# Python tests
+cd py-hftbacktest
+pip install -e &quot;.[dev]&quot;
+pytest tests/
+
+# Run a specific test
+pytest tests/test_backtest.py -v
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="1-maturin-build-fails-rust-version-too-old">1. Maturin build fails: "Rust version too old"<a class="headerlink" href="#1-maturin-build-fails-rust-version-too-old" title="Permanent link">&para;</a></h3>
+<p>HftBacktest requires Rust 1.91.1 (2024 edition). Update with:</p>
+<pre><code class="language-bash">rustup update
+rustup default stable
+# Verify
+rustc --version
+</code></pre>
+<h3 id="2-importerror-no-module-named-hftbacktest_hftbacktest">2. <code>ImportError: No module named 'hftbacktest._hftbacktest'</code><a class="headerlink" href="#2-importerror-no-module-named-hftbacktest_hftbacktest" title="Permanent link">&para;</a></h3>
+<p>The Rust extension was not built. Run:</p>
+<pre><code class="language-bash">cd py-hftbacktest
+maturin develop --release
+</code></pre>
+<p>If using a virtual environment, ensure it is activated before running maturin.</p>
+<h3 id="3-numpy-version-conflict-numpy-20-23-required">3. NumPy version conflict (<code>numpy &gt;=2.0, &lt;2.3</code> required)<a class="headerlink" href="#3-numpy-version-conflict-numpy-20-23-required" title="Permanent link">&para;</a></h3>
+<p>Numba 0.61+ requires NumPy 2.x. Downgrade NumPy to a compatible version:</p>
+<pre><code class="language-bash">pip install &quot;numpy&gt;=2.0,&lt;2.3&quot;
+</code></pre>
+<h3 id="4-strategy-runs-slowly-jit-overhead-on-first-call">4. Strategy runs slowly (JIT overhead on first call)<a class="headerlink" href="#4-strategy-runs-slowly-jit-overhead-on-first-call" title="Permanent link">&para;</a></h3>
+<p>Numba compiles the <code>@njit</code> function on first invocation, which can take 10–60 seconds. This is one-time overhead per process. See the official docs on <a href="../docs/jit_compilation_overhead.rst">JIT Compilation Overhead</a> for mitigation strategies (caching, AOT compilation).</p>
+<h3 id="5-backtesterrorendofdata-returned-immediately">5. <code>BacktestError::EndOfData</code> returned immediately<a class="headerlink" href="#5-backtesterrorendofdata-returned-immediately" title="Permanent link">&para;</a></h3>
+<p>The feed data file could not be found or is empty. Verify:</p>
+<pre><code class="language-python">import os
+assert os.path.exists(&quot;data/BTCUSDT_20240101.npz&quot;), &quot;Feed data file missing&quot;
+</code></pre>
+<p>Data must be in <code>.npz</code> format with the <code>event_dtype</code> schema. See the <a href="https://hftbacktest.readthedocs.io/en/latest/tutorials/Data%20Preparation.html">data preparation tutorial</a>.</p>
+<h3 id="6-order-queue-position-never-advances-no-fills">6. Order queue position never advances (no fills)<a class="headerlink" href="#6-order-queue-position-never-advances-no-fills" title="Permanent link">&para;</a></h3>
+<p>Using <code>risk_adverse_queue_model()</code> means orders fill only when trades occur at the order's price level. If the market never crosses your price, the order sits. Switch to <code>prob_queue_model</code> for a more optimistic fill simulation, or lower your limit price.</p>
+<h3 id="7-iceoryx2-ipc-errors-in-live-mode">7. <code>iceoryx2</code> IPC errors in live mode<a class="headerlink" href="#7-iceoryx2-ipc-errors-in-live-mode" title="Permanent link">&para;</a></h3>
+<p>The connector and bot must use the same iceoryx2 service name and be run as the same user with sufficient shared memory permissions. On Linux, check:</p>
+<pre><code class="language-bash">ls /dev/shm/
+# Ensure shared memory segments are visible
+</code></pre>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>API keys</strong>: Store exchange API keys in environment variables or a secrets manager, never in source code or committed TOML files.</li>
+<li><strong>Testnet first</strong>: Both Binance Futures and Bybit connectors have testnet support. Always validate strategies on testnet before live deployment.</li>
+<li><strong>Risk controls</strong>: HftBacktest does not include built-in position limits or kill switches. Implement max-position checks in your strategy logic.</li>
+<li><strong>IPC attack surface</strong>: The iceoryx2 IPC channel between connector and bot is local-only (shared memory). Ensure the host is not shared with untrusted processes.</li>
+</ul>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="architecture.md">architecture.md</a> — System components and module layout</li>
+<li><a href="workflow.md">workflow.md</a> — Event processing and order matching pipeline</li>
+<li><a href="state-management.md">state-management.md</a> — Order book, order lifecycle, position tracking</li>
+<li><a href="https://hftbacktest.readthedocs.io/">Official documentation</a></li>
+<li><a href="../connector/README.md">Connector README</a></li>
+</ul>
+<h2 id="maintained-uv-environment-2026-10-12">Maintained uv environment (2026-10-12)<a class="headerlink" href="#maintained-uv-environment-2026-10-12" title="Permanent link">&para;</a></h2>
+<p>The tested interpreter selection is Python 3.14.8. uv 0.13.0 resolves runtime dependencies, optional extras, development groups, and build isolation. <code>uv.lock</code> records exact versions; <code>--upgrade</code> refreshes them within the project and compatibility constraints. Review <a href="validation.md">validation evidence</a> before treating a build or test command as successful on this host.</p>
+<p>The all-extras Python 3.15 environment cannot install databento-dbn 0.52.1 because its available wheels end at CPython 3.14. Python 3.14.8 builds the extension. The existing Python unittest requires the absent tmp_20240501.npz market-data fixture.</p>
+<h3 id="layout-and-build-ownership">Layout and build ownership<a class="headerlink" href="#layout-and-build-ownership" title="Permanent link">&para;</a></h3>
+<p>The root Cargo workspace and py-hftbacktest maturin package are retained. Python commands use --project py-hftbacktest; this avoids flattening the native workspace or relocating its relative Rust path dependencies.</p>
+<p>The native toolchain used for these checks is Rust 1.99.0 with Apple Command Line Tools. Make Cargo available with <code>export PATH=/opt/homebrew/opt/rustup/bin:$PATH</code>.</p>
+<h3 id="commands-from-the-repository-root">Commands from the repository root<a class="headerlink" href="#commands-from-the-repository-root" title="Permanent link">&para;</a></h3>
+<pre><code class="language-sh">uv python install 3.14.8
+uv lock --project py-hftbacktest --upgrade --python 3.14.8
+uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8
+uv build --project py-hftbacktest
+cargo test --workspace
+uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests
+</code></pre>
+<h3 id="external-inputs-and-test-scope">External inputs and test scope<a class="headerlink" href="#external-inputs-and-test-scope" title="Permanent link">&para;</a></h3>
+<p>Backtest datasets, Databento parsing wheels, live IPC components, and exchange connectors are separate runtime or native requirements. The Python package includes a Rust extension and NumPy/Numba integration, so an import-only source check is insufficient to validate the binding.</p>
+<p>Existing upstream skips and xfails remain unchanged. Full suite failures, incomplete runs, and supplemental scoped checks are listed separately in validation. No new test cases were added. The architecture document links existing implementation files and explains the component contracts.</p></main>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@12.1.0/dist/mermaid.esm.min.mjs';
+mermaid.initialize({startOnLoad:true,securityLevel:'strict',theme:'default',flowchart:{useMaxWidth:true},sequence:{useMaxWidth:true}});
+</script></body></html>

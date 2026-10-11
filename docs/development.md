@@ -303,3 +303,32 @@ ls /dev/shm/
 - [state-management.md](state-management.md) — Order book, order lifecycle, position tracking
 - [Official documentation](https://hftbacktest.readthedocs.io/)
 - [Connector README](../connector/README.md)
+
+## Maintained uv environment (2026-10-12)
+
+The tested interpreter selection is Python 3.14.8. uv 0.13.0 resolves runtime dependencies, optional extras, development groups, and build isolation. `uv.lock` records exact versions; `--upgrade` refreshes them within the project and compatibility constraints. Review [validation evidence](validation.md) before treating a build or test command as successful on this host.
+
+The all-extras Python 3.15 environment cannot install databento-dbn 0.52.1 because its available wheels end at CPython 3.14. Python 3.14.8 builds the extension. The existing Python unittest requires the absent tmp_20240501.npz market-data fixture.
+
+### Layout and build ownership
+
+The root Cargo workspace and py-hftbacktest maturin package are retained. Python commands use --project py-hftbacktest; this avoids flattening the native workspace or relocating its relative Rust path dependencies.
+
+The native toolchain used for these checks is Rust 1.99.0 with Apple Command Line Tools. Make Cargo available with `export PATH=/opt/homebrew/opt/rustup/bin:$PATH`.
+
+### Commands from the repository root
+
+```sh
+uv python install 3.14.8
+uv lock --project py-hftbacktest --upgrade --python 3.14.8
+uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8
+uv build --project py-hftbacktest
+cargo test --workspace
+uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests
+```
+
+### External inputs and test scope
+
+Backtest datasets, Databento parsing wheels, live IPC components, and exchange connectors are separate runtime or native requirements. The Python package includes a Rust extension and NumPy/Numba integration, so an import-only source check is insufficient to validate the binding.
+
+Existing upstream skips and xfails remain unchanged. Full suite failures, incomplete runs, and supplemental scoped checks are listed separately in validation. No new test cases were added. The architecture document links existing implementation files and explains the component contracts.

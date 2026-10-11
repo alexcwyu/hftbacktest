@@ -87,10 +87,15 @@ unsafe impl POD for OrderLatencyRow {}
 ///
 /// **Example**
 /// ```
-/// use hftbacktest::backtest::{DataSource, models::IntpOrderLatency};
+/// use hftbacktest::backtest::{
+///     DataSource, data::Data, models::{IntpOrderLatency, OrderLatencyRow},
+/// };
 ///
 /// let latency_model = IntpOrderLatency::new(
-///     vec![DataSource::File("latency_20240215.npz".to_string())],
+///     vec![DataSource::Data(Data::from_data(&[
+///         OrderLatencyRow { req_ts: 100, exch_ts: 110, resp_ts: 120, _padding: 0 },
+///         OrderLatencyRow { req_ts: 200, exch_ts: 210, resp_ts: 220, _padding: 0 },
+///     ]))],
 ///     0
 /// );
 /// ```

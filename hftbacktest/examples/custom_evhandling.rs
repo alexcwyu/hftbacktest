@@ -143,7 +143,7 @@ where
     ) -> Result<bool, BacktestError> {
         let result = self
             .local
-            .process_recv_order2(timestamp, wait_resp_order_id, |order| {
+            .process_recv_order_::<true, _>(timestamp, wait_resp_order_id, |_order| {
                 // todo: Implement logic for handling order response events.
             })?;
         Ok(result)

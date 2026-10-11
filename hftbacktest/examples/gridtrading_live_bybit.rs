@@ -46,7 +46,6 @@ fn prepare_live() -> LiveBot<IceoryxUnifiedChannel, HashMapMarketDepth> {
         .build()
         .unwrap();
 
-    hbt.run().unwrap();
     hbt
 }
 
