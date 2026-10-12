@@ -1,6 +1,6 @@
 # Current maintained uv workflow
 
-The selected complete Python environment is CPython 3.15.0. Python 3.15 full-extra installation is blocked by the latest Databento DBN distribution’s missing artifact for that interpreter. The original Rust workspace and release extension build independently.
+The selected complete Python environment is CPython 3.15.0. The complete 67-package graph builds current Databento DBN from licensed source, including the narrow PyO3 repr registration repair described below. The original 27 Rust unit cases and 3 doctests pass; the Python replay case still requires its missing original archive.
 
 ```sh
 uv sync --project py-hftbacktest --all-groups --all-extras --frozen --python 3.15.0
@@ -323,11 +323,13 @@ ls /dev/shm/
 
 The tested complete interpreter selection is Python 3.15.0. uv 0.13.0 resolves runtime dependencies, optional extras, development groups, and build isolation. `uv.lock` records exact versions; `--upgrade` refreshes them within the project and compatibility constraints. Review [validation evidence](validation.md) before treating a build or test command as successful on this host.
 
-PyPI’s databento-dbn 0.70.0 wheels stop at Python 3.14, but its unchanged official Apache-2.0 source builds a genuine Python 3.15 extension. The Databento extra explicitly selects that current SDK through [immutable official revision aa012adc](https://github.com/databento/dbn/tree/aa012adc6502e01b01d7b5c7836742dde21e93d8), with the actual `python` subdirectory and full Rust workspace metadata. Its native PyO3 0.29.2 source already supports this interpreter. The owned HftBacktest extension uses current PyO3 0.29.3 with unchanged binding function bodies. No ABI-forward flag or relabeled wheel is used. The existing Python unittest still requires the absent `tmp_20240501.npz` market-data archive.
+PyPI’s databento-dbn 0.70.0 wheels stop at Python 3.14. The Databento extra selects the licensed [official revision aa012adc](https://github.com/databento/dbn/tree/aa012adc6502e01b01d7b5c7836742dde21e93d8) retained in [vendor/databento-dbn](../vendor/databento-dbn/MAINTENANCE.md). Its full Rust workspace and original SDK source remain intact; [provenance](../vendor/databento-dbn/PROVENANCE.json) records the exact dependency and packaging changes. The owned HftBacktest extension uses current PyO3 0.29.3 with unchanged binding function bodies. No ABI-forward flag or relabeled wheel is used. The existing Python unittest still requires the absent `tmp_20240501.npz` market-data archive.
+
+Python 3.15 deprecates duplicate native type slots. PyO3 simple enums register a generated repr and then the SDK custom repr, causing strict SDK import to panic. The licensed [PyO3 0.29.3 owner fix](../vendor/databento-dbn/vendor/pyo3/src/pyclass/create_type_object.rs) replaces only an existing `Py_tp_repr` pointer with the later pointer, preserving CPython’s previous effective last-slot-wins behavior. Every unrelated slot and SDK enum method/value remains unchanged. The SDK [root build metadata](../vendor/databento-dbn/pyproject.toml) explicitly includes that crate and both licenses in the source archive; a fresh source-archive-to-native-wheel build verifies portable ownership. Maturin uses the original active `[project] requires-python = ">=3.10"`; the unchanged unused Poetry `<3.15` tool table does not constrain that backend. See [Maturin’s source inclusion contract](https://www.maturin.rs/config).
 
 ### Layout and build ownership
 
-The root Cargo workspace and py-hftbacktest maturin package are retained. Python commands use --project py-hftbacktest; this avoids flattening the native workspace or relocating its relative Rust path dependencies.
+The root Cargo workspace, its [verified native lock](../Cargo.lock), and py-hftbacktest maturin package are retained. Python commands use --project py-hftbacktest; this avoids flattening the native workspace or relocating its relative Rust path dependencies.
 
 The native toolchain used for these checks is Rust 1.99.0 with Apple Command Line Tools. Make Cargo available with `export PATH=/opt/homebrew/opt/rustup/bin:$PATH`.
 
@@ -350,4 +352,6 @@ Existing upstream skips and xfails remain unchanged. Full suite failures, incomp
 
 ### Complete source build verification
 
-The isolated full extras/development dependency graph resolves 67 packages and installs on Python 3.15. Real HftBacktest, Databento 0.87.0 and DBN 0.70.0 modules import; the native asset builder accepts the original settings. The SDK decodes its own official MBO fixture through the real DBN reader. That SDK fixture is not substituted for the HftBacktest archive. The original unchanged strategy compiles against the real ROI Numba jitclass type without creating a pointer instance or fabricated market events. This confirms the binding’s compile contract; execution of the supplied Python case remains blocked at the missing original archive.
+The isolated and maintained full extras/development dependency graphs resolve 67 packages and install on Python 3.15. Real HftBacktest, Databento 0.87.0 and DBN 0.70.0 modules import with warnings treated as errors; the native asset builder accepts the original settings. The SDK decodes its own official MBO fixture through the real DBN reader. That SDK fixture is not substituted for the HftBacktest archive. The original unchanged strategy compiles against the real ROI Numba jitclass type without creating a pointer instance or fabricated market events. All variants of all 20 exported SDK enum classes retain byte-identical repr, str, name and value compared with the unpatched official build. The official two-row MBO fixture also decodes to identical dataframe values and dtypes. This confirms the binding’s compile contract; execution of the supplied Python case remains blocked at the missing original archive.
+
+The supplemental unchanged upstream PyO3 regression scope separately passes all 56 cases: 7 class formatting, 24 enum and 25 protocol cases, with no ignored or filtered cases. It checks the exact repr-only patched runtime under the selected Python 3.15 interpreter. These are dependency regression controls, separate from the original HftBacktest 27 unit cases and 3 doctests.

@@ -1,0 +1,22 @@
+[package]
+name = "dbn-macros"
+description = "Proc macros for dbn crate"
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro-crate = "3.5.0"
+proc-macro2 = "1.0.107"
+quote = "1.0.47"
+syn = { version = "2.0", features = ["full"] }
+
+[dev-dependencies]
+csv = { workspace = true }
+dbn = { path = "../dbn" }
+trybuild = "1.0.121"

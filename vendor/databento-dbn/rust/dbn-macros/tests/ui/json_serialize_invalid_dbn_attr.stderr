@@ -1,0 +1,5 @@
+error: unrecognized dbn attr argument unknown
+ --> tests/ui/json_serialize_invalid_dbn_attr.rs:6:11
+  |
+6 |     #[dbn(unknown)]
+  |           ^^^^^^^

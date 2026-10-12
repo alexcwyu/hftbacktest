@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+# Preserve exact crate-distribution bytes for provenance.
+src/call.rs -text
+src/impl_/deprecated.rs -text
+src/pyclass/guard.rs -text
+tests/test_class_init.rs -text

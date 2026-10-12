@@ -84,4 +84,4 @@ filterwarnings = ["error"]
 dev = ["pytest", "maturin", "ruff", "pyright"]
 
 [tool.uv.sources]
-databento-dbn = { git = "https://github.com/databento/dbn.git", rev = "aa012adc6502e01b01d7b5c7836742dde21e93d8", subdirectory = "python" }
+databento-dbn = { path = "../vendor/databento-dbn" }

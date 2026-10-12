@@ -1,0 +1,5 @@
+error: Passed incompatible serialization arguments to dbn attr
+ --> tests/ui/csv_serialize_conflicting_dbn_attr.rs:6:5
+  |
+6 |     #[dbn(fixed_price, unix_nanos)]
+  |     ^

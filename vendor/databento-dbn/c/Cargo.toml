@@ -1,0 +1,27 @@
+[package]
+name = "dbn-c"
+description = "C bindings for working with Databento Binary Encoding (DBN)"
+# This crate should not be published
+publish = false
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+name = "dbn_c"
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+dbn = { path = "../rust/dbn", default-features = false }
+
+anyhow.workspace = true
+libc = "0.2.189"
+time.workspace = true
+
+[build-dependencies]
+cbindgen = { version = "0.29.4", default-features = false }
+
+[dev-dependencies]
+rstest.workspace = true

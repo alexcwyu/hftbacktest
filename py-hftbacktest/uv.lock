@@ -425,7 +425,7 @@ wheels = [
 [[package]]
 name = "databento-dbn"
 version = "0.70.0"
-source = { git = "https://github.com/databento/dbn.git?subdirectory=python&rev=aa012adc6502e01b01d7b5c7836742dde21e93d8#aa012adc6502e01b01d7b5c7836742dde21e93d8" }
+source = { directory = "../vendor/databento-dbn" }
 
 [[package]]
 name = "fonttools"
@@ -583,7 +583,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "databento", marker = "extra == 'databento'" },
-    { name = "databento-dbn", marker = "extra == 'databento'", git = "https://github.com/databento/dbn.git?subdirectory=python&rev=aa012adc6502e01b01d7b5c7836742dde21e93d8" },
+    { name = "databento-dbn", marker = "extra == 'databento'", directory = "../vendor/databento-dbn" },
     { name = "holoviews" },
     { name = "matplotlib" },
     { name = "numba", specifier = ">=0.66" },

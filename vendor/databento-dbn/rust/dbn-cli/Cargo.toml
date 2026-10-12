@@ -1,0 +1,31 @@
+[package]
+name = "dbn-cli"
+description = "Command-line utility for converting Databento Binary Encoding (DBN) files to text-based formats"
+default-run = "dbn"
+keywords = ["market-data", "json", "csv", "conversion", "encoding"]
+# see https://crates.io/category_slugs
+categories = ["command-line-utilities", "encoding"]
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "dbn"
+path = "src/main.rs"
+
+[dependencies]
+dbn = { path = "../dbn", version = "=0.70.0" }
+
+anyhow.workspace = true
+clap = { version = "4.6", features = ["derive", "wrap_help"] }
+serde = { workspace = true, features = ["derive"] }
+time.workspace = true
+zstd.workspace = true
+
+[dev-dependencies]
+assert_cmd = "2.2"
+predicates = "3.1"
+tempfile = "3.27"
+rstest.workspace = true

@@ -1,14 +1,38 @@
 # Validation evidence
 
-Recorded 2026-10-12 on macOS arm64. Selected Python: **3.14.8**; uv0.13.0; native Cargo/Rust1.99.0. Commands below ran from the repository root. Exit124 means the documented time bound expired; exit139 means a native segmentation fault. An earlier failed attempt is retained even if a later rerun succeeds.
+Recorded 2026-10-12 on macOS arm64. Selected Python: **3.15.0**; uv 0.13.0; native Cargo/Rust 1.99.0. Commands below ran from the repository root. Exit124 means the documented time bound expired; exit139 means a native segmentation fault. An earlier failed attempt is retained even if a later rerun succeeds.
 
 ## Current scope and result
 
-Complete Rust workspace:27unit tests and3doctests pass. Final CPython3.14 release wheel and source distribution build successfully after the latest all-group/all-extra dependency upgrade. Existing Rust examples and documentation now use current APIs; latency rows are supplied in memory. The full existing Python unittest was rerun in the final environment:1case,1error because tmp_20240501.npz is not present in this checkout. The unchanged test requires that market-data archive; no synthetic replacement or skip was introduced. A later Python-case compatibility repair below makes pytest collect the one actual unittest case; the Numba helper remains executable inside that case.
+The maintained Python 3.15 complete graph resolves 67 packages and frozen synchronization passes. The native HftBacktest release wheel and source distribution build; strict source compilation, actual Hft/Databento/DBN imports, original native asset settings and the unchanged original strategy's Numba compilation pass. The original Rust workspace passes **27 unit cases and 3 doctests**. The single original Python replay case still fails at the absent exact `tmp_20240501.npz` archive. No different data, synthetic events or skip replaces that case.
 
-Current recorded status: **blocked**. Interpreter fallback evidence and native prerequisites are described in [development](development.md). See [architecture](ayu-develop.md) for workflows, components, and existing source links.
+Current replay status remains **blocked by the missing original archive**. The former Python 3.15 PyPI artifact gap is resolved by the licensed source build described in [development](development.md) and [SDK provenance](../vendor/databento-dbn/PROVENANCE.json). The source is official DBN 0.70.0 revision aa012adc, with original SDK enum/record/encoding/decoding bodies intact. Current PyO3 0.29.3 has a narrowly scoped `Py_tp_repr` registration fix preserving the previous last-slot-wins result; strict imports no longer panic on the duplicate-slot deprecation.
 
-## Executed commands
+All variants of all 20 exported SDK enum classes retain identical repr, str, name and value. The genuine official two-row MBO fixture decodes to identical dataframe values/dtypes. That SDK fixture is never used as the missing Hft archive. A fresh SDK source archive installs in a separate Python 3.15 environment, and its exact patched runtime, licenses and provenance match the maintained source. Maturin packages the required SDK workspace members (`python`, `rust/dbn-macros`, `rust/dbn`); the complete original workspace, including C/CLI projects, is retained in the checkout.
+
+The supplemental unchanged upstream PyO3 scope passes **56 cases** separately: 7 class formatting, 24 enum and 25 protocol cases; none ignored or filtered. The patch hash matches that reviewed runtime. These dependency controls do not add cases to the original Hft suite.
+
+## Current Python 3.15 verification
+
+Commands run from the repository root. Complete command arrays, including the inline strict runtime control and its real fixture/source paths, are preserved in the [portable check records](maintenance/index.html). A duration marked unknown was not measured and is not reconstructed.
+
+| Scope | Command or recorded control | Exit | Wall seconds |
+|---|---|---:|---:|
+| Complete frozen graph | `uv sync --project py-hftbacktest --all-extras --all-groups --frozen --python 3.15.0` | 0 | 0.02 |
+| Current lock | `uv lock --project py-hftbacktest --check` | 0 | 0.02 |
+| Native Hft wheel/source archive | `uv build --project py-hftbacktest --python 3.15.0` | 0 | 236.15 |
+| Strict source compile | `py-hftbacktest/.venv/bin/python -Werror -m compileall -q -f py-hftbacktest/hftbacktest py-hftbacktest/tests vendor/databento-dbn/python/python` | 0 | 0.06 |
+| Real imports, original strategy JIT, enum/MBO control | Recorded `python -Werror -c` control using owned source and official fixture | 0 | 2.25 |
+| Original Python case | `py-hftbacktest/.venv/bin/python -m pytest py-hftbacktest/tests/test_hftbacktest.py -q` | 1 | 0.29 |
+| Original native scope | `cargo test --workspace --locked`, selected Python 3.15 binding interpreter | 0 | unknown |
+| Portable SDK native wheel/source archive | `uv build --project vendor/databento-dbn --python 3.15.0 --out-dir /tmp/hftbacktest-dbn-final315-dist` | 0 | 46.10 |
+| Upstream PyO3 existing regressions | Recorded isolated `cargo test` scope: `test_enum`, `test_class_formatting`, `test_proto_methods` | 0 | 50.75 |
+
+## Historical attempts and earlier fallback
+
+Earlier failed attempts and the Python 3.14 fallback below are retained as history. They do not describe the selected complete Python 3.15 source environment.
+
+## Historical executed commands
 
 | Step | Exact command | Exit | Elapsed seconds | Evidence |
 |---|---|---:|---:|---|
@@ -187,6 +211,6 @@ The original case still requires `tmp_20240501.npz` and fails with FileNotFoundE
 
 The Numba strategy helper is named `run_strategy` and remains called by the original `TestPyHftBacktest.test_run_backtest`. This avoids pytest mistaking its required native-backtest argument for a fixture. Collection now selects exactly the one original unittest case. The entire helper body is AST-identical, and the full module is AST-identical after these three name migrations; no data, parameters or assertions change. The real original strategy compiles against the actual native-backed Numba class without constructing a pointer instance or substituting market events. The strict builder configuration probe also passes. These compilation checks do not prove a successful data replay.
 
-A fresh full-dependency Python 3.15 control expands only the isolated metadata interpreter range. Latest `databento-dbn==0.70.0` has CPython 3.13/3.14 wheels and no source distribution or CPython 3.15 artifact, so synchronization exits 2. The maintained Python 3.14 `uv lock --upgrade` resolves the same latest 67-package graph without a lock change.
+The earlier PyPI-only full-dependency Python 3.15 control exited 2 because `databento-dbn==0.70.0` has no CPython 3.15 PyPI artifact or PyPI source distribution. Python 3.14 then resolved the latest 67-package graph without a lock change. The maintained official licensed source build and repr-slot owner fix described above now resolve that distribution gap on Python 3.15; the earlier failure remains recorded.
 
 The required archive was not found by the recorded workspace/runtime search. The [official data guide](https://hftbacktest.readthedocs.io/en/latest/data.html) explains its event schema and timestamp ordering; it does not establish the identity of this missing test archive. No different instrument, date or manufactured feed is substituted.
