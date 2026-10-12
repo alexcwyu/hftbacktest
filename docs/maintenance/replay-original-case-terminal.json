@@ -1,0 +1,25 @@
+{
+  "repo": "hftbacktest",
+  "step": "original-replay-recovery-terminal-case",
+  "head": "22095dd6e52b96c329ca8632d90c23a42178b430",
+  "command": [
+    "py-hftbacktest/.venv/bin/python",
+    "-m",
+    "pytest",
+    "py-hftbacktest/tests/test_hftbacktest.py::TestPyHftBacktest::test_run_backtest",
+    "-q"
+  ],
+  "cwd": "<workspace>/hftbacktest",
+  "started": 1791822264.710597,
+  "elapsed_seconds": 0.47,
+  "exit_code": 1,
+  "log": "<workspace>/.runtime/maintenance-2026-10-12/hft-original-replay-recovery/original-case-terminal.log",
+  "original_case_sha256": "6c9be9b510fc4a07f525e8e749b5b76fc42db78539b07d0830432ed5b7a402fa",
+  "original_case_unchanged": true,
+  "archive_recovered": false,
+  "case_count": 1,
+  "case_failed": 1,
+  "failure": "FileNotFoundError: tmp_20240501.npz",
+  "data_substitutions": false,
+  "source_or_test_edits": false
+}

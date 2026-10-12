@@ -1,0 +1,35 @@
+{
+  "head": "22095dd6e52b96c329ca8632d90c23a42178b430",
+  "source_files": {
+    "py-hftbacktest/tests/test_hftbacktest.py": "6c9be9b510fc4a07f525e8e749b5b76fc42db78539b07d0830432ed5b7a402fa",
+    "hftbacktest/examples/2_download_tardis.py": "913aeec212d30ba85c1c1c1241d20ef774abd9dae7262e0d3df949265a26a580",
+    "hftbacktest/examples/3_convert.py": "ffde66a55bafa308bc3cce58d4538e4c7dfd94f4b70e0d942b1419cc15c9895f",
+    "hftbacktest/examples/gridtrading_backtest.rs": "3edbd68c2d676a159a76a244eb0a8f00bb8cf0183e4c573e5097c90c60e6ece8",
+    "py-hftbacktest/hftbacktest/data/utils/tardis.py": "aa6318679a7437edab2c3b96d33690e46ba10a491f046017585059a538993890"
+  },
+  "filename_introduction": {
+    "commit": "45e7c8c04696f6bb526e41369bff7ee6259cfc38",
+    "date": "2024-06-29",
+    "file": "tests/test_hftbacktest_ffi.py",
+    "link": "https://github.com/nkaz001/hftbacktest/blob/45e7c8c04696f6bb526e41369bff7ee6259cfc38/tests/test_hftbacktest_ffi.py"
+  },
+  "author_history_filename_search": "10baf5d201d0ed6b730a9303d0cfa5cc2c075c34 2024-07-30T11:22:07-04:00 feat: improve Numpy file IO.\n45e7c8c04696f6bb526e41369bff7ee6259cfc38 2024-06-29T08:53:03-04:00 feat(rust): writing of hftbacktest2, which uses rust-hftbacktest as the backend.\n",
+  "release_inventory": {
+    "api": "https://api.github.com/repos/nkaz001/hftbacktest/releases?per_page=100&page=1",
+    "releases": 41,
+    "assets": 0,
+    "direct_npz_assets": 0,
+    "non_wheel_assets": []
+  },
+  "archive_identity_established": false,
+  "observed_missing_identity_fields": [
+    "exchange",
+    "instrument/symbol",
+    "raw-source checksums",
+    "event count",
+    "converter invocation/options and version",
+    "mapping from named example output to tmp fixture"
+  ],
+  "source_and_tests_modified": false,
+  "candidate": "Contemporaneous Binance futures1000SHIBUSDT examples share date/tick/lot but generate differently named archive; candidate is not accepted as fixture identity."
+}
