@@ -143,3 +143,5 @@ The root Cargo workspace and py-hftbacktest maturin package are retained. Python
 | [py-hftbacktest/pyproject.toml](../py-hftbacktest/pyproject.toml#L5) | Implementation and module/type documentation, beginning at line 5 |
 
 The links target files present in this checkout. Follow their imports and adjacent tests when changing a boundary. The validation document distinguishes successful builds, complete test runs, inherited skips, and unresolved prerequisites.
+
+The complete Python 3.15 environment now builds the current Databento DBN source from its immutable official Apache-2.0 revision; see [the maintained native build workflow](development.md#maintained-uv-environment-2026-10-12). Owned PyO3 0.29.3 bindings preserve their existing bodies. The supplied Python case still fails at the absent original NPZ archive, while genuine imports, native builder settings and original strategy JIT compilation are verified independently.

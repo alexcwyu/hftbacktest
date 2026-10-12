@@ -9,7 +9,7 @@ readme = "README.md"
 authors = [{ name = "nkaz001", email = "nkaz001@protonmail.com" }]
 license = { file = "LICENSE" }
 version = "2.4.4"
-requires-python = ">=3.13,<3.15"
+requires-python = ">=3.13,<3.16"
 dependencies = [
  "numpy>=2.0",
  "numba>=0.66",
@@ -42,7 +42,7 @@ classifiers = [
 Repository = "https://github.com/nkaz001/hftbacktest"
 
 [project.optional-dependencies]
-databento = ["databento"]
+databento = ["databento", "databento-dbn~=0.70.0"]
 dev = [
   "ruff>=0.11",
   "pyright>=1.1",
@@ -82,3 +82,6 @@ filterwarnings = ["error"]
 
 [dependency-groups]
 dev = ["pytest", "maturin", "ruff", "pyright"]
+
+[tool.uv.sources]
+databento-dbn = { git = "https://github.com/databento/dbn.git", rev = "aa012adc6502e01b01d7b5c7836742dde21e93d8", subdirectory = "python" }

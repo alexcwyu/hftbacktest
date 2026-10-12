@@ -1,9 +1,9 @@
 # Current maintained uv workflow
 
-The selected complete Python environment is CPython 3.14.8. Python 3.15 full-extra installation is blocked by the latest Databento DBN distribution’s missing artifact for that interpreter. The original Rust workspace and release extension build independently.
+The selected complete Python environment is CPython 3.15.0. Python 3.15 full-extra installation is blocked by the latest Databento DBN distribution’s missing artifact for that interpreter. The original Rust workspace and release extension build independently.
 
 ```sh
-uv sync --project py-hftbacktest --all-groups --all-extras --frozen --python 3.14.8
+uv sync --project py-hftbacktest --all-groups --all-extras --frozen --python 3.15.0
 uv build --project py-hftbacktest
 uv run --project py-hftbacktest --no-sync python -m pytest py-hftbacktest/tests
 cargo test --workspace --locked
@@ -321,9 +321,9 @@ ls /dev/shm/
 
 ## Maintained uv environment (2026-10-12)
 
-The tested interpreter selection is Python 3.14.8. uv 0.13.0 resolves runtime dependencies, optional extras, development groups, and build isolation. `uv.lock` records exact versions; `--upgrade` refreshes them within the project and compatibility constraints. Review [validation evidence](validation.md) before treating a build or test command as successful on this host.
+The tested complete interpreter selection is Python 3.15.0. uv 0.13.0 resolves runtime dependencies, optional extras, development groups, and build isolation. `uv.lock` records exact versions; `--upgrade` refreshes them within the project and compatibility constraints. Review [validation evidence](validation.md) before treating a build or test command as successful on this host.
 
-The all-extras Python 3.15 environment cannot install databento-dbn 0.70.0 because its available wheels end at CPython 3.14. Python 3.14.8 builds the extension. The existing Python unittest requires the absent tmp_20240501.npz market-data fixture.
+PyPI’s databento-dbn 0.70.0 wheels stop at Python 3.14, but its unchanged official Apache-2.0 source builds a genuine Python 3.15 extension. The Databento extra explicitly selects that current SDK through [immutable official revision aa012adc](https://github.com/databento/dbn/tree/aa012adc6502e01b01d7b5c7836742dde21e93d8), with the actual `python` subdirectory and full Rust workspace metadata. Its native PyO3 0.29.2 source already supports this interpreter. The owned HftBacktest extension uses current PyO3 0.29.3 with unchanged binding function bodies. No ABI-forward flag or relabeled wheel is used. The existing Python unittest still requires the absent `tmp_20240501.npz` market-data archive.
 
 ### Layout and build ownership
 
@@ -334,9 +334,9 @@ The native toolchain used for these checks is Rust 1.99.0 with Apple Command Lin
 ### Commands from the repository root
 
 ```sh
-uv python install 3.14.8
-uv lock --project py-hftbacktest --upgrade --python 3.14.8
-uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8
+uv python install 3.15.0
+uv lock --project py-hftbacktest --upgrade --python 3.15.0
+uv sync --project py-hftbacktest --all-groups --all-extras --python 3.15.0
 uv build --project py-hftbacktest
 cargo test --workspace
 uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests
@@ -347,3 +347,7 @@ uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftb
 Backtest datasets, Databento parsing wheels, live IPC components, and exchange connectors are separate runtime or native requirements. The Python package includes a Rust extension and NumPy/Numba integration, so an import-only source check is insufficient to validate the binding.
 
 Existing upstream skips and xfails remain unchanged. Full suite failures, incomplete runs, and supplemental scoped checks are listed separately in validation. No new test cases were added. The architecture document links existing implementation files and explains the component contracts.
+
+### Complete source build verification
+
+The isolated full extras/development dependency graph resolves 67 packages and installs on Python 3.15. Real HftBacktest, Databento 0.87.0 and DBN 0.70.0 modules import; the native asset builder accepts the original settings. The SDK decodes its own official MBO fixture through the real DBN reader. That SDK fixture is not substituted for the HftBacktest archive. The original unchanged strategy compiles against the real ROI Numba jitclass type without creating a pointer instance or fabricated market events. This confirms the binding’s compile contract; execution of the supplied Python case remains blocked at the missing original archive.
