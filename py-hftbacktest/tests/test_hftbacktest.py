@@ -11,7 +11,7 @@ from hftbacktest import (
 
 
 @njit
-def test_run(hbt):
+def run_strategy(hbt):
     order_id = 0
     while hbt.elapse(10_000_000_000) == 0:
         current_timestamp = hbt.current_timestamp
@@ -63,15 +63,15 @@ class TestPyHftBacktest(unittest.TestCase):
                 .linear_asset(1.0)
                 .data(['tmp_20240501.npz'])
                 .no_partial_fill_exchange()
-                .constant_latency(100, 100)
+                .constant_order_latency(100, 100)
                 .power_prob_queue_model3(3.0)
                 .tick_size(0.000001)
                 .lot_size(1.0)
-                .trade_len(1000)
+                .last_trades_capacity(1000)
                 .roi_lb(0.0)
                 .roi_ub(1.0)
         )
 
         # hbt = HashMapMarketDepthMultiAssetMultiExchangeBacktest([asset])
         hbt = ROIVectorMarketDepthBacktest([asset])
-        test_run(hbt)
+        run_strategy(hbt)
