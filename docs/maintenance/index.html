@@ -1,23 +1,8 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>hftbacktest: portable verification records</title><style>
-:root{color-scheme:light dark;--bg:#f6f8fa;--paper:#fff;--fg:#182332;--muted:#526274;--line:#d9e0e7;--accent:#1769aa}
-@media(prefers-color-scheme:dark){:root{--bg:#111820;--paper:#192330;--fg:#e6edf3;--muted:#a0b3c5;--line:#344354;--accent:#71b7ee}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,sans-serif}
-header{border-bottom:1px solid var(--line);padding:16px max(24px,calc((100vw - 1120px)/2));background:var(--paper);font-size:14px}
-main{max-width:1120px;margin:32px auto;padding:40px 48px;background:var(--paper);border:1px solid var(--line);border-radius:12px}
-h1,h2,h3,h4{line-height:1.3;scroll-margin-top:24px}h1{font-size:2.1rem}h2{margin-top:2.5em;border-bottom:1px solid var(--line);padding-bottom:.35em}h3{margin-top:1.8em}
-a{color:var(--accent);text-underline-offset:3px}code{font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg);border-radius:4px;padding:2px 5px}pre{overflow:auto;border:1px solid var(--line);background:var(--bg);padding:16px;border-radius:7px}pre code{padding:0;background:none}
-table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left}th{background:var(--bg)}blockquote{border-left:4px solid var(--accent);margin:16px 0;padding:4px 20px;color:var(--muted)}
-.diagram{overflow-x:auto;margin:24px 0;padding:20px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#182332}.mermaid{border:0;background:none;text-align:center}.mermaid svg{height:auto;max-width:100%}details{font-size:13px;color:#526274}.headerlink{margin-left:.4em;font-size:.7em;text-decoration:none;color:var(--muted)}
-main{min-width:0;overflow-wrap:anywhere}table,pre{max-width:100%}.diagram svg{display:block}
-th,td{min-width:120px;overflow-wrap:normal}
-@media(max-width:740px){main{margin:0;padding:24px 18px;border:0;border-radius:0}h1{font-size:1.7rem}.diagram{padding:8px}}
-@media print{header,details,.headerlink{display:none}body,main{background:#fff;color:#000;border:0;margin:0;padding:0}a{color:#000}.diagram,pre{break-inside:avoid}}
-</style></head><body><header>Engineering documentation · <a href="index.md">Markdown source</a></header><main><h1 id="hftbacktest-portable-verification-records">hftbacktest: portable verification records<a class="headerlink" href="#hftbacktest-portable-verification-records" title="Permanent link">&para;</a></h1>
-<p>Full raw logs are retained in the workspace maintenance evidence, not distributed here. Hashes identify those original logs. A successful build or selected test subset does not imply a full test-suite pass. Commands containing <workspace> describe the original execution environment.</p>
-<p><a href="verification.json">Machine-readable records</a> · <a href="../validation.md">Repository validation summary</a></p>
-<h2 id="executed-commands">Executed commands<a class="headerlink" href="#executed-commands" title="Permanent link">&para;</a></h2>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hftbacktest: portable verification records</title><style>html{color-scheme:light dark}body{margin:0;background:#f5f7fa;color:#172333;font:16px/1.7 system-ui,sans-serif}main{max-width:1120px;margin:28px auto;background:white;padding:40px;border:1px solid #dbe2ea;border-radius:10px}h1,h2,h3{line-height:1.25}h2{margin-top:2em;border-bottom:1px solid #dbe2ea;padding-bottom:.4em}a{color:#1769aa}pre{overflow:auto;padding:16px;background:#f5f7fa;border:1px solid #dbe2ea;border-radius:6px}code{font:14px/1.6 ui-monospace,monospace}table{border-collapse:collapse;display:block;overflow:auto}th,td{border:1px solid #dbe2ea;padding:8px 12px;text-align:left;vertical-align:top}blockquote{margin-left:0;border-left:4px solid #1769aa;padding-left:18px}@media(max-width:700px){main{margin:8px;padding:18px}body{font-size:15px}}@media(prefers-color-scheme:dark){body{background:#111820;color:#e7edf5}main{background:#192330;border-color:#344354}pre{background:#111820}a{color:#78b9ef}th,td,h2,pre{border-color:#344354}}@media print{main{margin:0;border:0;padding:0}a{color:inherit}pre,table{overflow:visible}}</style></head><body><main><h1 id="hftbacktest-portable-verification-records">hftbacktest: portable verification records</h1>
+<p>These records retain exact commands, outcomes, original-log hashes and available source snapshots. Failed, interrupted and earlier exploratory commands remain visible. A later focused pass proves only its own scope.</p>
+<p><a href="verification.json">Machine-readable records</a> · <a href="../validation.md">Validation</a> · <a href="../ayu-develop.md">Engineering guide</a></p>
+<p>Original logs remain in the workspace maintenance evidence. Tracked source hashes exclude untracked additions and later edits, as stated in each captured snapshot.</p>
 <table>
 <thead>
 <tr>
@@ -25,121 +10,146 @@ th,td{min-width:120px;overflow-wrap:normal}
 <th style="text-align: right;">Exit</th>
 <th style="text-align: right;">Duration</th>
 <th>Command</th>
-<th>Outcomes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>build</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">unrecordeds</td>
-<td><code>uv build --project py-hftbacktest</code></td>
-<td>Successfully built py-hftbacktest/dist/hftbacktest-2.4.4.tar.gz<br>Successfully built py-hftbacktest/dist/hftbacktest-2.4.4-cp314-cp314-macosx_11_0_arm64.whl</td>
-</tr>
-<tr>
 <td>build-final</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">388.28s</td>
 <td><code>uv build --project py-hftbacktest</code></td>
-<td>Successfully built py-hftbacktest/dist/hftbacktest-2.4.4.tar.gz<br>Successfully built py-hftbacktest/dist/hftbacktest-2.4.4-cp314-cp314-macosx_11_0_arm64.whl</td>
+</tr>
+<tr>
+<td>build</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">479.76s</td>
+<td><code>uv build --project py-hftbacktest</code></td>
 </tr>
 <tr>
 <td>cargo-test</td>
 <td style="text-align: right;">101</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">329.29s</td>
 <td><code>cargo test --workspace</code></td>
-<td>See exit status; no test-count assertion.</td>
 </tr>
 <tr>
 <td>cargo-tests-current-api</td>
 <td style="text-align: right;">101</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">4.19s</td>
 <td><code>cargo test --workspace</code></td>
-<td>See exit status; no test-count assertion.</td>
 </tr>
 <tr>
 <td>cargo-tests-current-docs</td>
 <td style="text-align: right;">101</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">29.5s</td>
 <td><code>cargo test --workspace</code></td>
-<td>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.52s<br>test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s<br>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.13s</td>
 </tr>
 <tr>
 <td>cargo-tests-current-examples</td>
 <td style="text-align: right;">101</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">30.75s</td>
 <td><code>cargo test --workspace</code></td>
-<td>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.52s<br>test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.54s</td>
 </tr>
 <tr>
 <td>cargo-tests-final</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">37.07s</td>
 <td><code>cargo test --workspace</code></td>
-<td>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.51s<br>test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s<br>test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s<br>test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s</td>
 </tr>
 <tr>
 <td>cargo-tests-fixed-builder</td>
 <td style="text-align: right;">101</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">3.41s</td>
 <td><code>cargo test --workspace</code></td>
-<td>See exit status; no test-count assertion.</td>
 </tr>
 <tr>
 <td>cargo-tests-fixed-examples</td>
 <td style="text-align: right;">101</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">7.39s</td>
 <td><code>cargo test --workspace</code></td>
-<td>See exit status; no test-count assertion.</td>
+</tr>
+<tr>
+<td>current-original-python-suite-real-fixture-status</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.35s</td>
+<td><code>uv run --project py-hftbacktest --no-sync python -m pytest py-hftbacktest/tests --tb=short</code></td>
+</tr>
+<tr>
+<td>current-original-unittest-pytest-collection</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.48s</td>
+<td><code>uv run --project py-hftbacktest --no-sync python -m pytest py-hftbacktest/tests --collect-only</code></td>
+</tr>
+<tr>
+<td>current-python-builder-api-probe</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.21s</td>
+<td><code>uv run --project py-hftbacktest --no-sync python -W error -c from hftbacktest import BacktestAsset; a=BacktestAsset().linear_asset(1.0).data(["tmp_20240501.npz"]).no_partial_fill_exchange().constant_order_latency(100,100).power_prob_queue_model3(3.0).tick_size(0.000001).lot_size(1.0).last_trades_capacity(1000).roi_lb(0.0).roi_ub(1.0); print(type(a).__name__, "complete original builder configuration accepted")</code></td>
+</tr>
+<tr>
+<td>original-python-builder-api-probe</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.58s</td>
+<td><code>uv run --project py-hftbacktest --no-sync python -c from hftbacktest import BacktestAsset; a=BacktestAsset().linear_asset(1.0).data(["tmp_20240501.npz"]).no_partial_fill_exchange().constant_latency(100,100).power_prob_queue_model3(3.0).tick_size(0.000001).lot_size(1.0); print("last_trades_capacity",hasattr(a,"last_trades_capacity")); a.trade_len(1000)</code></td>
 </tr>
 <tr>
 <td>python-final-sync</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">606.87s</td>
 <td><code>uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8</code></td>
-<td>See exit status; no test-count assertion.</td>
 </tr>
 <tr>
 <td>python-sync</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">0.78s</td>
 <td><code>uv sync --project py-hftbacktest --all-groups --all-extras --python 3.15</code></td>
-<td>See exit status; no test-count assertion.</td>
 </tr>
 <tr>
 <td>python-tests</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">5.43s</td>
 <td><code>uv run --project py-hftbacktest --no-sync pytest py-hftbacktest/tests</code></td>
-<td>See exit status; no test-count assertion.</td>
-</tr>
-<tr>
-<td>python-unittest</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">unrecordeds</td>
-<td><code>uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests</code></td>
-<td>See exit status; no test-count assertion.</td>
 </tr>
 <tr>
 <td>python-unittest-latest</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">0.98s</td>
 <td><code>uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests</code></td>
-<td>See exit status; no test-count assertion.</td>
+</tr>
+<tr>
+<td>python-unittest</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.0s</td>
+<td><code>uv run --project py-hftbacktest --no-sync python -m unittest discover -s py-hftbacktest/tests</code></td>
 </tr>
 <tr>
 <td>python-upgrade</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">1.03s</td>
 <td><code>uv lock --project py-hftbacktest --upgrade --python 3.14.8</code></td>
-<td>See exit status; no test-count assertion.</td>
 </tr>
 <tr>
 <td>python314-sync</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">unrecordeds</td>
+<td style="text-align: right;">689.59s</td>
 <td><code>uv sync --project py-hftbacktest --all-groups --all-extras --python 3.14.8</code></td>
-<td>See exit status; no test-count assertion.</td>
+</tr>
+<tr>
+<td>refreshed-full-python315-dependency-sync</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.55s</td>
+<td><code>uv sync --all-groups --all-extras --python 3.15 --no-install-project</code></td>
+</tr>
+<tr>
+<td>refreshed-latest-compatible-python314-lock</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.19s</td>
+<td><code>uv lock --project py-hftbacktest --upgrade --python 3.14.8</code></td>
+</tr>
+<tr>
+<td>unchanged-strategy-native-numba-compile</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.62s</td>
+<td><code>uv run --project py-hftbacktest --no-sync python -c import importlib.util; from hftbacktest.binding import ROIVectorMarketDepthBacktest_; spec=importlib.util.spec_from_file_location("original_case", "py-hftbacktest/tests/test_hftbacktest.py"); module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); module.run_strategy.compile((ROIVectorMarketDepthBacktest_.class_type.instance_type,)); print("Original strategy compiled against the actual native-backed Numba class; no market data or pointer instance constructed.")</code></td>
 </tr>
 </tbody>
 </table></main>

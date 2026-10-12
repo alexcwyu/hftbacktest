@@ -4,7 +4,7 @@ Recorded 2026-10-12 on macOS arm64. Selected Python: **3.14.8**; uv0.13.0; nativ
 
 ## Current scope and result
 
-Complete Rust workspace:27unit tests and3doctests pass. Final CPython3.14 release wheel and source distribution build successfully after the latest all-group/all-extra dependency upgrade. Existing Rust examples and documentation now use current APIs; latency rows are supplied in memory. The full existing Python unittest was rerun in the final environment:1case,1error because tmp_20240501.npz is not present in this checkout. The unchanged test requires that market-data archive; no synthetic replacement or skip was introduced. Pytest additionally collects its Numba helper as a fixture-dependent function, so the native unittest command records the authoritative case.
+Complete Rust workspace:27unit tests and3doctests pass. Final CPython3.14 release wheel and source distribution build successfully after the latest all-group/all-extra dependency upgrade. Existing Rust examples and documentation now use current APIs; latency rows are supplied in memory. The full existing Python unittest was rerun in the final environment:1case,1error because tmp_20240501.npz is not present in this checkout. The unchanged test requires that market-data archive; no synthetic replacement or skip was introduced. A later Python-case compatibility repair below makes pytest collect the one actual unittest case; the Numba helper remains executable inside that case.
 
 Current recorded status: **blocked**. Interpreter fallback evidence and native prerequisites are described in [development](development.md). See [architecture](ayu-develop.md) for workflows, components, and existing source links.
 
@@ -180,3 +180,13 @@ Ran 1 test in 0.002s
 ## Synchronization
 
 All upstream branch and tag refs were fetched by the workspace synchronization procedure. Fork updates use non-forcing pushes; upstream tags also have a private local namespace to preserve divergent tags. The default branch was merged into feature/ayu_develop, preserving the modern package layout and upstream source changes. The workspace synchronization JSON and log retain per-ref outcomes and merge history. This document does not claim that any feature branch was pushed.
+
+## Python case compatibility follow-up
+
+The original case still requires `tmp_20240501.npz` and fails with FileNotFoundError. A focused real builder probe exposed a masked removed method: `trade_len` is now `last_trades_capacity`; `constant_latency` is deprecated in favor of `constant_order_latency`. The existing case uses the current methods with the exact same capacity 1000 and latency values (100, 100). The native implementations set the same model fields.
+
+The Numba strategy helper is named `run_strategy` and remains called by the original `TestPyHftBacktest.test_run_backtest`. This avoids pytest mistaking its required native-backtest argument for a fixture. Collection now selects exactly the one original unittest case. The entire helper body is AST-identical, and the full module is AST-identical after these three name migrations; no data, parameters or assertions change. The real original strategy compiles against the actual native-backed Numba class without constructing a pointer instance or substituting market events. The strict builder configuration probe also passes. These compilation checks do not prove a successful data replay.
+
+A fresh full-dependency Python 3.15 control expands only the isolated metadata interpreter range. Latest `databento-dbn==0.70.0` has CPython 3.13/3.14 wheels and no source distribution or CPython 3.15 artifact, so synchronization exits 2. The maintained Python 3.14 `uv lock --upgrade` resolves the same latest 67-package graph without a lock change.
+
+The required archive was not found by the recorded workspace/runtime search. The [official data guide](https://hftbacktest.readthedocs.io/en/latest/data.html) explains its event schema and timestamp ordering; it does not establish the identity of this missing test archive. No different instrument, date or manufactured feed is substituted.

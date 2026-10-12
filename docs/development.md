@@ -1,3 +1,18 @@
+# Current maintained uv workflow
+
+The selected complete Python environment is CPython 3.14.8. Python 3.15 full-extra installation is blocked by the latest Databento DBN distribution’s missing artifact for that interpreter. The original Rust workspace and release extension build independently.
+
+```sh
+uv sync --project py-hftbacktest --all-groups --all-extras --frozen --python 3.14.8
+uv build --project py-hftbacktest
+uv run --project py-hftbacktest --no-sync python -m pytest py-hftbacktest/tests
+cargo test --workspace --locked
+```
+
+The original Python unittest needs its exact `tmp_20240501.npz` input. Current builder methods preserve the original latency and capacity configuration; its unchanged Numba strategy compiles against the native-backed class, but complete replay remains unverified without that archive. See [validation](validation.md) and [source case](../py-hftbacktest/tests/test_hftbacktest.py).
+
+## Retained upstream development reference
+
 # HftBacktest — Development Guide
 
 > **Last Updated**: 2026-04-07T00:00:00Z
@@ -308,7 +323,7 @@ ls /dev/shm/
 
 The tested interpreter selection is Python 3.14.8. uv 0.13.0 resolves runtime dependencies, optional extras, development groups, and build isolation. `uv.lock` records exact versions; `--upgrade` refreshes them within the project and compatibility constraints. Review [validation evidence](validation.md) before treating a build or test command as successful on this host.
 
-The all-extras Python 3.15 environment cannot install databento-dbn 0.52.1 because its available wheels end at CPython 3.14. Python 3.14.8 builds the extension. The existing Python unittest requires the absent tmp_20240501.npz market-data fixture.
+The all-extras Python 3.15 environment cannot install databento-dbn 0.70.0 because its available wheels end at CPython 3.14. Python 3.14.8 builds the extension. The existing Python unittest requires the absent tmp_20240501.npz market-data fixture.
 
 ### Layout and build ownership
 

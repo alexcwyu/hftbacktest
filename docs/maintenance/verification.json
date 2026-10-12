@@ -1,369 +1,543 @@
-{
-  "repository": "hftbacktest",
-  "source_commit_before_documentation_commit": "b11cbe4120fc22d2d2e0509c09c1006ec522bcf4",
-  "recorded_on": "2026-10-12",
-  "records": [
-    {
-      "command": [
-        "uv",
-        "build",
-        "--project",
-        "py-hftbacktest"
-      ],
-      "exit_code": 0,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "build",
-      "original_log": "hftbacktest-build.log",
-      "log_sha256": "df3995f482200cad07854f5fbeb57a49b8d866e26a8756ed9457bed70bcbd82e",
-      "outcomes": [
-        "Successfully built py-hftbacktest/dist/hftbacktest-2.4.4.tar.gz",
-        "Successfully built py-hftbacktest/dist/hftbacktest-2.4.4-cp314-cp314-macosx_11_0_arm64.whl"
-      ]
-    },
-    {
-      "command": [
-        "uv",
-        "build",
-        "--project",
-        "py-hftbacktest"
-      ],
-      "exit_code": 0,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "build-final",
-      "original_log": "hftbacktest-build-final.log",
-      "log_sha256": "dffdeeb296b696ac12f81d5cb5852de0e6315d540689f689b6ab3f7ae23aec05",
-      "outcomes": [
-        "Successfully built py-hftbacktest/dist/hftbacktest-2.4.4.tar.gz",
-        "Successfully built py-hftbacktest/dist/hftbacktest-2.4.4-cp314-cp314-macosx_11_0_arm64.whl"
-      ]
-    },
-    {
-      "command": [
-        "cargo",
-        "test",
-        "--workspace"
-      ],
-      "exit_code": 101,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "cargo-test",
-      "original_log": "hftbacktest-cargo-test.log",
-      "log_sha256": "0b770e268def55e8cff1db6e334cf400c26584619c29fb2c0ff2117d3769ada9",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "cargo",
-        "test",
-        "--workspace"
-      ],
-      "exit_code": 101,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "cargo-tests-current-api",
-      "original_log": "hftbacktest-cargo-tests-current-api.log",
-      "log_sha256": "9d1fc625e6d1de0a1b237de51d8b8b07e0be690d938becce1387c8ed5afba171",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "cargo",
-        "test",
-        "--workspace"
-      ],
-      "exit_code": 101,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "cargo-tests-current-docs",
-      "original_log": "hftbacktest-cargo-tests-current-docs.log",
-      "log_sha256": "d32c940cc55891f6f855e693d7db1c3795c59e47dc9d6004ff0164113957a301",
-      "outcomes": [
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.52s",
-        "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.13s"
-      ]
-    },
-    {
-      "command": [
-        "cargo",
-        "test",
-        "--workspace"
-      ],
-      "exit_code": 101,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "cargo-tests-current-examples",
-      "original_log": "hftbacktest-cargo-tests-current-examples.log",
-      "log_sha256": "8d5290f44897cb9c33ee9d5b1376bd2d5e95e8264b981c859eb6a9cd32f0124d",
-      "outcomes": [
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.52s",
-        "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.54s"
-      ]
-    },
-    {
-      "command": [
-        "cargo",
-        "test",
-        "--workspace"
-      ],
-      "exit_code": 0,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "cargo-tests-final",
-      "original_log": "hftbacktest-cargo-tests-final.log",
-      "log_sha256": "164f4bfc3130e5167b057f65ecf543967ea14d086b9aa14f799603bb73062174",
-      "outcomes": [
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.51s",
-        "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
-        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s",
-        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s"
-      ]
-    },
-    {
-      "command": [
-        "cargo",
-        "test",
-        "--workspace"
-      ],
-      "exit_code": 101,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "cargo-tests-fixed-builder",
-      "original_log": "hftbacktest-cargo-tests-fixed-builder.log",
-      "log_sha256": "b6c94202c1cbd8648a0980235e73da04d47c568b211dd5305e2ca6ae21d57786",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "cargo",
-        "test",
-        "--workspace"
-      ],
-      "exit_code": 101,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "cargo-tests-fixed-examples",
-      "original_log": "hftbacktest-cargo-tests-fixed-examples.log",
-      "log_sha256": "bfb8ca55617f0fbdc4b6bab38ecdeb5b832afe73afa8fc1cac69a36f235211f5",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "uv",
-        "sync",
-        "--project",
-        "py-hftbacktest",
-        "--all-groups",
-        "--all-extras",
-        "--python",
-        "3.14.8"
-      ],
-      "exit_code": 0,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "python-final-sync",
-      "original_log": "hftbacktest-python-final-sync.log",
-      "log_sha256": "1daedad31dfb549151910df4ce1791a7b6c87d28325404c1b20fa1ee0cc40841",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "uv",
-        "sync",
-        "--project",
-        "py-hftbacktest",
-        "--all-groups",
-        "--all-extras",
-        "--python",
-        "3.15"
-      ],
-      "exit_code": 2,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "python-sync",
-      "original_log": "hftbacktest-python-sync.log",
-      "log_sha256": "f40f3031437050df464f70d5398bdf67d765858688f32f91599831caa07c0bac",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "uv",
-        "run",
-        "--project",
-        "py-hftbacktest",
-        "--no-sync",
-        "pytest",
-        "py-hftbacktest/tests"
-      ],
-      "exit_code": 1,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "python-tests",
-      "original_log": "hftbacktest-python-tests.log",
-      "log_sha256": "088d7fe75c6c4c70bf4b6dcc9880e2d9cb8a6d493032d6bba75582e798f544eb",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "uv",
-        "run",
-        "--project",
-        "py-hftbacktest",
-        "--no-sync",
-        "python",
-        "-m",
-        "unittest",
-        "discover",
-        "-s",
-        "py-hftbacktest/tests"
-      ],
-      "exit_code": 1,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "python-unittest",
-      "original_log": "hftbacktest-python-unittest.log",
-      "log_sha256": "f14fdcb2bcc9d305b3d9359e1182a42914d4699d04feb4e738c97861c69b32ed",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "uv",
-        "run",
-        "--project",
-        "py-hftbacktest",
-        "--no-sync",
-        "python",
-        "-m",
-        "unittest",
-        "discover",
-        "-s",
-        "py-hftbacktest/tests"
-      ],
-      "exit_code": 1,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "python-unittest-latest",
-      "original_log": "hftbacktest-python-unittest-latest.log",
-      "log_sha256": "fa9c40cbca10476f386c52f426df209d1a8469d8e19b853a6d0d9a54b2c1d5c2",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "uv",
-        "lock",
-        "--project",
-        "py-hftbacktest",
-        "--upgrade",
-        "--python",
-        "3.14.8"
-      ],
-      "exit_code": 0,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "python-upgrade",
-      "original_log": "hftbacktest-python-upgrade.log",
-      "log_sha256": "295a475a1e6b5190cdffc713a047813d00d5f5fbf0501ed8d21daa5c1ba22e9d",
-      "outcomes": []
-    },
-    {
-      "command": [
-        "uv",
-        "sync",
-        "--project",
-        "py-hftbacktest",
-        "--all-groups",
-        "--all-extras",
-        "--python",
-        "3.14.8"
-      ],
-      "exit_code": 0,
-      "cwd": "<workspace>/hftbacktest",
-      "check": "python314-sync",
-      "original_log": "hftbacktest-python314-sync.log",
-      "log_sha256": "46dee5a3986ceb3d98675166850c86dfe11f8634da6e879fc2193e98e4e22cfa",
-      "outcomes": []
-    }
-  ],
-  "summary": {
-    "repo": "hftbacktest",
-    "status": "blocked",
-    "branch": "feature/ayu_develop",
-    "head": "b11cbe4120fc22d2d2e0509c09c1006ec522bcf4",
-    "selected_python": "3.14.8",
-    "uv_version": "0.13.0",
-    "rust_version": "1.99.0",
-    "build": {
-      "repo": "hftbacktest",
-      "step": "build-final",
-      "command": [
-        "uv",
-        "build",
-        "--project",
-        "py-hftbacktest"
-      ],
-      "cwd": "<workspace>/hftbacktest",
-      "started": 1791738631.6667142,
-      "log": "<workspace>/docs/maintenance-2026-10-12/hftbacktest-build-final.log",
-      "exit_code": 0,
-      "elapsed_seconds": 388.28
-    },
-    "full_tests": {
-      "repo": "hftbacktest",
-      "step": "python-unittest-latest",
-      "command": [
-        "uv",
-        "run",
-        "--project",
-        "py-hftbacktest",
-        "--no-sync",
-        "python",
-        "-m",
-        "unittest",
-        "discover",
-        "-s",
-        "py-hftbacktest/tests"
-      ],
-      "cwd": "<workspace>/hftbacktest",
-      "started": 1791738670.174409,
-      "log": "<workspace>/docs/maintenance-2026-10-12/hftbacktest-python-unittest-latest.log",
-      "exit_code": 1,
-      "elapsed_seconds": 0.98
-    },
-    "summary": "Complete Rust workspace:27unit tests and3doctests pass. Final CPython3.14 release wheel and source distribution build successfully after the latest all-group/all-extra dependency upgrade. Existing Rust examples and documentation now use current APIs; latency rows are supplied in memory. The full existing Python unittest was rerun in the final environment:1case,1error because tmp_20240501.npz is not present in this checkout. The unchanged test requires that market-data archive; no synthetic replacement or skip was introduced. Pytest additionally collects its Numba helper as a fixture-dependent function, so the native unittest command records the authoritative case.",
-    "documentation": [
-      "docs/ayu-develop.md",
-      "docs/ayu-develop.html",
-      "docs/development.md",
-      "docs/development.html",
-      "docs/validation.md",
-      "docs/validation.html"
+[
+  {
+    "command": [
+      "uv",
+      "build",
+      "--project",
+      "py-hftbacktest"
     ],
-    "source_links": 14,
-    "diagram_count": 6,
-    "sync_evidence": "<workspace>/docs/maintenance-2026-10-12/hftbacktest-sync.json",
-    "feature_pushed": false,
-    "commit": "b11cbe4120fc22d2d2e0509c09c1006ec522bcf4",
-    "native_tests": {
-      "repo": "hftbacktest",
-      "step": "cargo-tests-final",
-      "command": [
-        "cargo",
-        "test",
-        "--workspace"
-      ],
-      "cwd": "<workspace>/hftbacktest",
-      "started": 1791736852.4371898,
-      "log": "<workspace>/docs/maintenance-2026-10-12/hftbacktest-cargo-tests-final.log",
-      "exit_code": 0,
-      "elapsed_seconds": 37.07
-    },
-    "test_summary": {
-      "rust_unit_passed": 27,
-      "rust_doctests_passed": 3,
-      "python_cases": 1,
-      "python_errors": 1,
-      "full_python_suite_passed": false
-    },
-    "blockers": [
-      "Existing Python unittest requires missing market-data archive tmp_20240501.npz"
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 388.28,
+    "step": "build-final",
+    "started": 1791738631.6667142,
+    "seconds": 388.28,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-build-final.log",
+    "log_sha256": "dffdeeb296b696ac12f81d5cb5852de0e6315d540689f689b6ab3f7ae23aec05",
+    "log_bytes": 10265,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "build",
+      "--project",
+      "py-hftbacktest"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 479.76,
+    "step": "build",
+    "started": 1791735900.745974,
+    "seconds": 479.76,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-build.log",
+    "log_sha256": "df3995f482200cad07854f5fbeb57a49b8d866e26a8756ed9457bed70bcbd82e",
+    "log_bytes": 10265,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 101,
+    "elapsed_seconds": 329.29,
+    "step": "cargo-test",
+    "started": 1791735346.369515,
+    "seconds": 329.29,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-cargo-test.log",
+    "log_sha256": "0b770e268def55e8cff1db6e334cf400c26584619c29fb2c0ff2117d3769ada9",
+    "log_bytes": 18819,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 101,
+    "elapsed_seconds": 4.19,
+    "step": "cargo-tests-current-api",
+    "started": 1791736015.709939,
+    "seconds": 4.19,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-cargo-tests-current-api.log",
+    "log_sha256": "9d1fc625e6d1de0a1b237de51d8b8b07e0be690d938becce1387c8ed5afba171",
+    "log_bytes": 5950,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 101,
+    "elapsed_seconds": 29.5,
+    "step": "cargo-tests-current-docs",
+    "started": 1791736546.363631,
+    "seconds": 29.5,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-cargo-tests-current-docs.log",
+    "log_sha256": "d32c940cc55891f6f855e693d7db1c3795c59e47dc9d6004ff0164113957a301",
+    "log_bytes": 13254,
+    "outcome_lines": [
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.52s",
+      "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.13s"
     ]
   },
-  "note": "Full raw logs are retained in the workspace maintenance evidence, not distributed here. Hashes identify those original logs. A successful build or selected test subset does not imply a full test-suite pass. Commands containing <workspace> describe the original execution environment."
-}
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 101,
+    "elapsed_seconds": 30.75,
+    "step": "cargo-tests-current-examples",
+    "started": 1791736433.383135,
+    "seconds": 30.75,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-cargo-tests-current-examples.log",
+    "log_sha256": "8d5290f44897cb9c33ee9d5b1376bd2d5e95e8264b981c859eb6a9cd32f0124d",
+    "log_bytes": 14995,
+    "outcome_lines": [
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.52s",
+      "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.54s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 37.07,
+    "step": "cargo-tests-final",
+    "started": 1791736852.4371898,
+    "seconds": 37.07,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-cargo-tests-final.log",
+    "log_sha256": "164f4bfc3130e5167b057f65ecf543967ea14d086b9aa14f799603bb73062174",
+    "log_bytes": 12692,
+    "outcome_lines": [
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.51s",
+      "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s"
+    ]
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 101,
+    "elapsed_seconds": 3.41,
+    "step": "cargo-tests-fixed-builder",
+    "started": 1791735898.480512,
+    "seconds": 3.41,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-cargo-tests-fixed-builder.log",
+    "log_sha256": "b6c94202c1cbd8648a0980235e73da04d47c568b211dd5305e2ca6ae21d57786",
+    "log_bytes": 7601,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 101,
+    "elapsed_seconds": 7.39,
+    "step": "cargo-tests-fixed-examples",
+    "started": 1791736131.497289,
+    "seconds": 7.39,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-cargo-tests-fixed-examples.log",
+    "log_sha256": "bfb8ca55617f0fbdc4b6bab38ecdeb5b832afe73afa8fc1cac69a36f235211f5",
+    "log_bytes": 8347,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "py-hftbacktest",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "py-hftbacktest/tests",
+      "--tb=short"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 1,
+    "seconds": 0.35,
+    "check": "current-original-python-suite-real-fixture-status",
+    "source_snapshot": {
+      "head": "aaaafdd477137f257e43e82db295364cab1c56ca",
+      "tracked_source_diff_sha256": "daec728f6673cf970899ba5e71cd541962841992cb83bee699c6cd469e870b44",
+      "note": "Tracked source snapshot at command start; untracked additions and later edits are not covered by this hash."
+    },
+    "evidence_record": "hftbacktest-current-original-python-suite-real-fixture-status.json",
+    "original_log": "hftbacktest-current-original-python-suite-real-fixture-status.log",
+    "log_sha256": "11c1c019ab1c2720387c8de543d130276301774beeda1c1995e6312b48fb6de1",
+    "log_bytes": 1040,
+    "outcome_lines": [
+      "1 failed in 0.13s"
+    ]
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "py-hftbacktest",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "py-hftbacktest/tests",
+      "--collect-only"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "seconds": 0.48,
+    "check": "current-original-unittest-pytest-collection",
+    "source_snapshot": {
+      "head": "aaaafdd477137f257e43e82db295364cab1c56ca",
+      "tracked_source_diff_sha256": "daec728f6673cf970899ba5e71cd541962841992cb83bee699c6cd469e870b44",
+      "note": "Tracked source snapshot at command start; untracked additions and later edits are not covered by this hash."
+    },
+    "evidence_record": "hftbacktest-current-original-unittest-pytest-collection.json",
+    "original_log": "hftbacktest-current-original-unittest-pytest-collection.log",
+    "log_sha256": "fb968d8fa171efc797ab60e9007e52d8a2b83627bb5cba278dfddc0fd2d2968a",
+    "log_bytes": 274,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "py-hftbacktest",
+      "--no-sync",
+      "python",
+      "-W",
+      "error",
+      "-c",
+      "from hftbacktest import BacktestAsset; a=BacktestAsset().linear_asset(1.0).data([\"tmp_20240501.npz\"]).no_partial_fill_exchange().constant_order_latency(100,100).power_prob_queue_model3(3.0).tick_size(0.000001).lot_size(1.0).last_trades_capacity(1000).roi_lb(0.0).roi_ub(1.0); print(type(a).__name__, \"complete original builder configuration accepted\")"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "seconds": 0.21,
+    "check": "current-python-builder-api-probe",
+    "source_snapshot": {
+      "head": "aaaafdd477137f257e43e82db295364cab1c56ca",
+      "tracked_source_diff_sha256": "daec728f6673cf970899ba5e71cd541962841992cb83bee699c6cd469e870b44",
+      "note": "Tracked source snapshot at command start; untracked additions and later edits are not covered by this hash."
+    },
+    "evidence_record": "hftbacktest-current-python-builder-api-probe.json",
+    "original_log": "hftbacktest-current-python-builder-api-probe.log",
+    "log_sha256": "0a0f197da76ce58b94e24352ce12d5fc03ff8603945379bddf68f9cff33ea859",
+    "log_bytes": 568,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "py-hftbacktest",
+      "--no-sync",
+      "python",
+      "-c",
+      "from hftbacktest import BacktestAsset; a=BacktestAsset().linear_asset(1.0).data([\"tmp_20240501.npz\"]).no_partial_fill_exchange().constant_latency(100,100).power_prob_queue_model3(3.0).tick_size(0.000001).lot_size(1.0); print(\"last_trades_capacity\",hasattr(a,\"last_trades_capacity\")); a.trade_len(1000)"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 1,
+    "seconds": 0.58,
+    "check": "original-python-builder-api-probe",
+    "source_snapshot": {
+      "head": "aaaafdd477137f257e43e82db295364cab1c56ca",
+      "tracked_source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "note": "Tracked source snapshot at command start; untracked additions and later edits are not covered by this hash."
+    },
+    "evidence_record": "hftbacktest-original-python-builder-api-probe.json",
+    "original_log": "hftbacktest-original-python-builder-api-probe.log",
+    "log_sha256": "fd1fb15a6dd258fb8d40d7a49080d72b2c3283882b7555de7103062e88723cb2",
+    "log_bytes": 1312,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "sync",
+      "--project",
+      "py-hftbacktest",
+      "--all-groups",
+      "--all-extras",
+      "--python",
+      "3.14.8"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 606.87,
+    "step": "python-final-sync",
+    "started": 1791736852.4348102,
+    "seconds": 606.87,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-python-final-sync.log",
+    "log_sha256": "1daedad31dfb549151910df4ce1791a7b6c87d28325404c1b20fa1ee0cc40841",
+    "log_bytes": 2662,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "sync",
+      "--project",
+      "py-hftbacktest",
+      "--all-groups",
+      "--all-extras",
+      "--python",
+      "3.15"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 2,
+    "elapsed_seconds": 0.78,
+    "step": "python-sync",
+    "started": 1791735311.985279,
+    "seconds": 0.78,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-python-sync.log",
+    "log_sha256": "f40f3031437050df464f70d5398bdf67d765858688f32f91599831caa07c0bac",
+    "log_bytes": 501,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "py-hftbacktest",
+      "--no-sync",
+      "pytest",
+      "py-hftbacktest/tests"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 1,
+    "elapsed_seconds": 5.43,
+    "step": "python-tests",
+    "started": 1791736466.001305,
+    "seconds": 5.43,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-python-tests.log",
+    "log_sha256": "088d7fe75c6c4c70bf4b6dcc9880e2d9cb8a6d493032d6bba75582e798f544eb",
+    "log_bytes": 8692,
+    "outcome_lines": [
+      "1 failed, 1 error in 2.83s"
+    ]
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "py-hftbacktest",
+      "--no-sync",
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "py-hftbacktest/tests"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 1,
+    "elapsed_seconds": 0.98,
+    "step": "python-unittest-latest",
+    "started": 1791738670.174409,
+    "seconds": 0.98,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-python-unittest-latest.log",
+    "log_sha256": "fa9c40cbca10476f386c52f426df209d1a8469d8e19b853a6d0d9a54b2c1d5c2",
+    "log_bytes": 1013,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "py-hftbacktest",
+      "--no-sync",
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "py-hftbacktest/tests"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 1,
+    "elapsed_seconds": 1.0,
+    "step": "python-unittest",
+    "started": 1791736506.2379231,
+    "seconds": 1.0,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-python-unittest.log",
+    "log_sha256": "f14fdcb2bcc9d305b3d9359e1182a42914d4699d04feb4e738c97861c69b32ed",
+    "log_bytes": 1013,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "lock",
+      "--project",
+      "py-hftbacktest",
+      "--upgrade",
+      "--python",
+      "3.14.8"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 1.03,
+    "step": "python-upgrade",
+    "started": 1791736689.479312,
+    "seconds": 1.03,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-python-upgrade.log",
+    "log_sha256": "295a475a1e6b5190cdffc713a047813d00d5f5fbf0501ed8d21daa5c1ba22e9d",
+    "log_bytes": 1931,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "sync",
+      "--project",
+      "py-hftbacktest",
+      "--all-groups",
+      "--all-extras",
+      "--python",
+      "3.14.8"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 689.59,
+    "step": "python314-sync",
+    "started": 1791735345.227519,
+    "seconds": 689.59,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-python314-sync.log",
+    "log_sha256": "46dee5a3986ceb3d98675166850c86dfe11f8634da6e879fc2193e98e4e22cfa",
+    "log_bytes": 2552,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "sync",
+      "--all-groups",
+      "--all-extras",
+      "--python",
+      "3.15",
+      "--no-install-project"
+    ],
+    "cwd": "<workspace>/.runtime/maintenance-2026-10-12/hft315-latest-dependency-control",
+    "exit_code": 2,
+    "seconds": 0.55,
+    "check": "refreshed-full-python315-dependency-sync",
+    "source_snapshot": {
+      "head": "aaaafdd477137f257e43e82db295364cab1c56ca",
+      "tracked_source_diff_sha256": "daec728f6673cf970899ba5e71cd541962841992cb83bee699c6cd469e870b44",
+      "note": "Tracked source snapshot at command start; untracked additions and later edits are not covered by this hash."
+    },
+    "evidence_record": "hftbacktest-refreshed-full-python315-dependency-sync.json",
+    "original_log": "hftbacktest-refreshed-full-python315-dependency-sync.log",
+    "log_sha256": "dfdefadc909c07f3cc9732385cf2b6bcefb3e3b28a8b026da24d93a4b383e165",
+    "log_bytes": 612,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "lock",
+      "--project",
+      "py-hftbacktest",
+      "--upgrade",
+      "--python",
+      "3.14.8"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "seconds": 0.19,
+    "check": "refreshed-latest-compatible-python314-lock",
+    "source_snapshot": {
+      "head": "aaaafdd477137f257e43e82db295364cab1c56ca",
+      "tracked_source_diff_sha256": "daec728f6673cf970899ba5e71cd541962841992cb83bee699c6cd469e870b44",
+      "note": "Tracked source snapshot at command start; untracked additions and later edits are not covered by this hash."
+    },
+    "evidence_record": "hftbacktest-refreshed-latest-compatible-python314-lock.json",
+    "original_log": "hftbacktest-refreshed-latest-compatible-python314-lock.log",
+    "log_sha256": "b3ce0b573737e47964e76fb0029e9944e0d1d3e98bd9cc1fb729e4a78b4813e7",
+    "log_bytes": 168,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "py-hftbacktest",
+      "--no-sync",
+      "python",
+      "-c",
+      "import importlib.util; from hftbacktest.binding import ROIVectorMarketDepthBacktest_; spec=importlib.util.spec_from_file_location(\"original_case\", \"py-hftbacktest/tests/test_hftbacktest.py\"); module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module); module.run_strategy.compile((ROIVectorMarketDepthBacktest_.class_type.instance_type,)); print(\"Original strategy compiled against the actual native-backed Numba class; no market data or pointer instance constructed.\")"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "seconds": 1.62,
+    "check": "unchanged-strategy-native-numba-compile",
+    "source_snapshot": {
+      "head": "aaaafdd477137f257e43e82db295364cab1c56ca",
+      "tracked_source_diff_sha256": "daec728f6673cf970899ba5e71cd541962841992cb83bee699c6cd469e870b44",
+      "note": "Tracked source snapshot at command start; untracked additions and later edits are not covered by this hash."
+    },
+    "evidence_record": "hftbacktest-unchanged-strategy-native-numba-compile.json",
+    "original_log": "hftbacktest-unchanged-strategy-native-numba-compile.log",
+    "log_sha256": "90bf35ef681d67f66d3d18886be90967d9c22da84aa00dae3be2fa59b372f3dc",
+    "log_bytes": 750,
+    "outcome_lines": []
+  }
+]
