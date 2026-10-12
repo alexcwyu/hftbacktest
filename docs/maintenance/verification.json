@@ -273,6 +273,290 @@
   },
   {
     "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": null,
+    "step": "final-selected315-original-workspace-tests",
+    "seconds": null,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final-selected315-original-workspace-tests.log",
+    "log_sha256": "c33f3febad14a71360f9961c5eb315fc93200e667f29eb042ef7037a72209fba",
+    "log_bytes": 12610,
+    "outcome_lines": [
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.52s",
+      "test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+      "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s",
+      "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s"
+    ]
+  },
+  {
+    "command": [
+      "uv",
+      "sync",
+      "--project",
+      "py-hftbacktest",
+      "--all-extras",
+      "--all-groups",
+      "--frozen",
+      "--python",
+      "3.15.0"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 0.02,
+    "step": "hftbacktest-final315-complete-frozen-sync",
+    "started": 1791785252.153161,
+    "seconds": 0.02,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-complete-frozen-sync.log",
+    "log_sha256": "e6f99f00751303b40799fbac59ac4c54b5b10961a2980fdcea0a83befc423563",
+    "log_bytes": 27,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "lock",
+      "--project",
+      "py-hftbacktest",
+      "--check"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 0.02,
+    "step": "hftbacktest-final315-lock-check",
+    "started": 1791785241.935832,
+    "seconds": 0.02,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-lock-check.log",
+    "log_sha256": "a69a29fad0cfdf72c47a5f40e2341b5c09b714602c760cf925bbb68003482859",
+    "log_bytes": 28,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "py-hftbacktest/.venv/bin/python",
+      "-m",
+      "pytest",
+      "py-hftbacktest/tests/test_hftbacktest.py",
+      "-q"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 1,
+    "elapsed_seconds": 0.29,
+    "step": "hftbacktest-final315-original-case",
+    "started": 1791785241.935782,
+    "seconds": 0.29,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-original-case.log",
+    "log_sha256": "0320bcaab3c157950cb6da53da452ef50c85a307fba0622c22ef076dd2a57e28",
+    "log_bytes": 7784,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "py-hftbacktest/.venv/bin/python",
+      "-Werror",
+      "-c",
+      "import sys,json,importlib.metadata,importlib.util,hashlib,os\nfrom pathlib import Path\nimport hftbacktest,databento,databento_dbn\nfrom hftbacktest.binding import ROIVectorMarketDepthBacktest_\np=Path(\"vendor/databento-dbn/tests/data/test_data.mbo.v3.dbn.zst\")\nf=databento.DBNStore.from_bytes(p.read_bytes()).to_df()\nspec=importlib.util.spec_from_file_location(\"original_hft_case\",Path(\"py-hftbacktest/tests/test_hftbacktest.py\"));m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);m.run_strategy.compile((ROIVectorMarketDepthBacktest_.class_type.instance_type,))\nenums={name:[{\"repr\":repr(x),\"str\":str(x),\"name\":x.name,\"value\":x.value} for x in cls.variants()] for name,cls in vars(databento_dbn).items() if isinstance(cls,type) and hasattr(cls,\"variants\")}\nprint(json.dumps({\"python\":sys.version,\"executable\":sys.executable,\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()},\"imports\":{x.__name__:x.__file__ for x in [hftbacktest,databento,databento_dbn]},\"abi_forward_flag\":os.environ.get(\"PYO3_USE_ABI3_FORWARD_COMPATIBILITY\"),\"strict_builder\":str(type(hftbacktest.BacktestAsset().constant_order_latency(100,100).last_trades_capacity(1000))),\"official_sdk_fixture\":{\"path\":str(p),\"sha256\":hashlib.sha256(p.read_bytes()).hexdigest(),\"rows\":len(f),\"used_as_hft_archive\":False},\"enums\":enums,\"real_mbo_frame\":{\"json\":f.to_json(date_format=\"iso\",date_unit=\"ns\"),\"dtypes\":{k:str(v) for k,v in f.dtypes.items()},\"index_dtype\":str(f.index.dtype)},\"original_strategy_jit\":{\"signatures\":[str(s) for s in m.run_strategy.signatures],\"hft_pointer_instances_created\":False}},indent=2))"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 2.25,
+    "step": "hftbacktest-final315-portable-strict-runtime",
+    "started": 1791785386.295628,
+    "seconds": 2.25,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-portable-strict-runtime.log",
+    "log_sha256": "4a7a2050a470f18e9646e5a0fc4ff1b157c77e85f8761ceab3c880adff3e81ff",
+    "log_bytes": 37899,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "build",
+      "--project",
+      "vendor/databento-dbn",
+      "--python",
+      "3.15.0",
+      "--out-dir",
+      "/tmp/hftbacktest-dbn-final315-dist"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 46.1,
+    "step": "hftbacktest-final315-sdk-portable-build",
+    "started": 1791785160.4826381,
+    "seconds": 46.1,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-sdk-portable-build.log",
+    "log_sha256": "3e085e0ff7e431e47610465a3d88fd098ae9e0210f1a334db56e651619383dc2",
+    "log_bytes": 6008,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "pip",
+      "install",
+      "--python",
+      "/tmp/hftbacktest-full-python315-env/bin/python",
+      "--no-deps",
+      "--reinstall",
+      "/tmp/hftbacktest-dbn-final315-dist/databento_dbn-0.70.0.tar.gz"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 55.23,
+    "step": "hftbacktest-final315-sdk-provenance-sdist-install",
+    "started": 1791785626.7114618,
+    "seconds": 55.23,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-sdk-provenance-sdist-install.log",
+    "log_sha256": "dfe8a6152b3a15cc43f9e628f1baa572b187215cec3f0635a95aa24a46d20124",
+    "log_bytes": 482,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "build",
+      "--project",
+      "vendor/databento-dbn",
+      "--sdist",
+      "--python",
+      "3.15.0",
+      "--out-dir",
+      "/tmp/hftbacktest-dbn-final315-dist"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 0.82,
+    "step": "hftbacktest-final315-sdk-provenance-sdist",
+    "started": 1791785625.8659048,
+    "seconds": 0.82,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-sdk-provenance-sdist.log",
+    "log_sha256": "9aa1b507ce74563ffa79e6438ec060db9b93a49302545cc78a8ff22bfbb32cd6",
+    "log_bytes": 1452,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "pip",
+      "install",
+      "--python",
+      "/tmp/hftbacktest-full-python315-env/bin/python",
+      "--no-deps",
+      "--reinstall",
+      "/tmp/hftbacktest-dbn-final315-dist/databento_dbn-0.70.0.tar.gz"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 44.43,
+    "step": "hftbacktest-final315-sdk-sdist-isolated-install",
+    "started": 1791785216.502984,
+    "seconds": 44.43,
+    "evidence_record": "hftbacktest-final315-sdk-sdist-isolated-install.json",
+    "original_log": "hftbacktest-final315-sdk-sdist-isolated-install.log",
+    "log_sha256": "4d5406277b525c4f5350afa67f95717bcbedc954f62f25464e8f88586fc1767d",
+    "log_bytes": 626,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "/tmp/hftbacktest-full-python315-env/bin/python",
+      "-Werror",
+      "-c",
+      "import sys,json,importlib.metadata,importlib.util,hashlib,os\nfrom pathlib import Path\nimport hftbacktest,databento,databento_dbn\nfrom hftbacktest.binding import ROIVectorMarketDepthBacktest_\np=Path(\"vendor/databento-dbn/tests/data/test_data.mbo.v3.dbn.zst\")\nf=databento.DBNStore.from_bytes(p.read_bytes()).to_df()\nspec=importlib.util.spec_from_file_location(\"original_hft_case\",Path(\"py-hftbacktest/tests/test_hftbacktest.py\"));m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);m.run_strategy.compile((ROIVectorMarketDepthBacktest_.class_type.instance_type,))\nenums={name:[{\"repr\":repr(x),\"str\":str(x),\"name\":x.name,\"value\":x.value} for x in cls.variants()] for name,cls in vars(databento_dbn).items() if isinstance(cls,type) and hasattr(cls,\"variants\")}\nprint(json.dumps({\"python\":sys.version,\"executable\":sys.executable,\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()},\"imports\":{x.__name__:x.__file__ for x in [hftbacktest,databento,databento_dbn]},\"abi_forward_flag\":os.environ.get(\"PYO3_USE_ABI3_FORWARD_COMPATIBILITY\"),\"strict_builder\":str(type(hftbacktest.BacktestAsset().constant_order_latency(100,100).last_trades_capacity(1000))),\"official_sdk_fixture\":{\"path\":str(p),\"sha256\":hashlib.sha256(p.read_bytes()).hexdigest(),\"rows\":len(f),\"used_as_hft_archive\":False},\"enums\":enums,\"real_mbo_frame\":{\"json\":f.to_json(date_format=\"iso\",date_unit=\"ns\"),\"dtypes\":{k:str(v) for k,v in f.dtypes.items()},\"index_dtype\":str(f.index.dtype)},\"original_strategy_jit\":{\"signatures\":[str(s) for s in m.run_strategy.signatures],\"hft_pointer_instances_created\":False}},indent=2))"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 2.48,
+    "step": "hftbacktest-final315-sdk-sdist-strict-runtime",
+    "started": 1791785772.6499252,
+    "seconds": 2.48,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-sdk-sdist-strict-runtime.log",
+    "log_sha256": "0763cc0fe9aa76bb636757e8b9cd733caf45d54a3e78133a51912128b4580d28",
+    "log_bytes": 37827,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "py-hftbacktest/.venv/bin/python",
+      "-Werror",
+      "-m",
+      "compileall",
+      "-q",
+      "-f",
+      "py-hftbacktest/hftbacktest",
+      "py-hftbacktest/tests",
+      "vendor/databento-dbn/python/python"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 0.06,
+    "step": "hftbacktest-final315-strict-compile",
+    "started": 1791785241.935785,
+    "seconds": 0.06,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-strict-compile.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "log_bytes": 0,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "py-hftbacktest/.venv/bin/python",
+      "-Werror",
+      "/tmp/hftbacktest315_runtime_proof.py"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 1.58,
+    "step": "hftbacktest-final315-strict-runtime",
+    "started": 1791785241.9357681,
+    "seconds": 1.58,
+    "evidence_record": "hftbacktest-final315-strict-runtime.json",
+    "original_log": "hftbacktest-final315-strict-runtime.log",
+    "log_sha256": "6c9d3c90d7ea0a73eac9b13da3b485f603a976176183a4913e3d932a91d25af7",
+    "log_bytes": 1421,
+    "outcome_lines": []
+  },
+  {
+    "command": [
+      "uv",
+      "build",
+      "--project",
+      "py-hftbacktest",
+      "--python",
+      "3.15.0"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "elapsed_seconds": 236.15,
+    "step": "hftbacktest-final315-wheel-build",
+    "started": 1791785252.203087,
+    "seconds": 236.15,
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-final315-wheel-build.log",
+    "log_sha256": "fe09bc549846bfc19b1b496c1c0216049f0b32d04fb89ef4439cc077c5df475a",
+    "log_bytes": 11688,
+    "outcome_lines": []
+  },
+  {
+    "command": [
       "uv",
       "run",
       "--project",
@@ -513,6 +797,61 @@
     "log_sha256": "b3ce0b573737e47964e76fb0029e9944e0d1d3e98bd9cc1fb729e4a78b4813e7",
     "log_bytes": 168,
     "outcome_lines": []
+  },
+  {
+    "command": [
+      "py-hftbacktest/.venv/bin/python",
+      "-c",
+      "import os,pathlib,shutil,subprocess,sys,sysconfig,tempfile; p=pathlib.Path(tempfile.mkdtemp(prefix=\"hft-pyo3-repr-review-\")); source=pathlib.Path(\"vendor/databento-dbn/vendor/pyo3\"); shutil.copytree(source,p/\"pyo3\",ignore=shutil.ignore_patterns(\"target\",\"__pycache__\")); env=dict(os.environ); env[\"PYO3_PYTHON\"]=sys.executable; env[\"DYLD_LIBRARY_PATH\"]=sysconfig.get_config_var(\"LIBDIR\")+(\":\"+env[\"DYLD_LIBRARY_PATH\"] if env.get(\"DYLD_LIBRARY_PATH\") else \"\"); env[\"CARGO_TARGET_DIR\"]=str(p/\"target\"); env[\"PYTHONWARNINGS\"]=\"error\"; print(\"Owned source copy:\",p,flush=True); raise SystemExit(subprocess.call([\"cargo\",\"test\",\"--manifest-path\",str(p/\"pyo3/Cargo.toml\"),\"--features\",\"auto-initialize\",\"--test\",\"test_enum\",\"--test\",\"test_class_formatting\",\"--test\",\"test_proto_methods\"],env=env))"
+    ],
+    "cwd": "<workspace>/hftbacktest",
+    "exit_code": 0,
+    "seconds": 50.75,
+    "elapsed_seconds": 50.75,
+    "check": "repr-slot-upstream-regressions",
+    "step": "repr-slot-upstream-regressions",
+    "source_snapshot": {
+      "head": "945b2f3952019667af963122c5edfee421b93daa",
+      "tracked_source_diff_sha256": "41e29e63a924afadd9433a43dfe9dffecc8c2f1fd1ecf876d13006a0a14acae6",
+      "note": "Tracked source snapshot at command start; untracked additions and later edits are not covered by this hash."
+    },
+    "upstream_existing_test_results": [
+      {
+        "passed": 7,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0
+      },
+      {
+        "passed": 24,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0
+      },
+      {
+        "passed": 25,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered": 0
+      }
+    ],
+    "exact_tested_vendor_inventory_sha256": "fb9ea6937bd1bb2347534575eb91e1a3a2c7ca1c5a404408ac53ac2d63da98be",
+    "tested_runtime_source_sha256": "460112afbda345858b3e38e92247b01aad3567176ccdd9b89dd60fea09fca825",
+    "source_inventory_differences": [],
+    "owned_copy_dependency_lock_difference": false,
+    "note": "Copied crate source SHA inventory independently verified against maintained untracked vendor source after test; no test bodies changed. Cargo dependency lock is resolved in owned copy.",
+    "evidence_record": "hftbacktest-result.json",
+    "original_log": "hftbacktest-repr-slot-upstream-regressions.log",
+    "log_sha256": "065d60f77a1b50e9e2991a0a839f13af36700660c19cfbc1c2326604ee0d03f1",
+    "log_bytes": 8527,
+    "outcome_lines": [
+      "test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s",
+      "test result: ok. 24 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s",
+      "test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s"
+    ]
   },
   {
     "command": [
