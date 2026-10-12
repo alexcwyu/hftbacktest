@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Validation evidence</title><style>html{color-scheme:light dark}body{margin:0;background:#f5f7fa;color:#172333;font:16px/1.7 system-ui,sans-serif}main{max-width:1120px;margin:28px auto;background:white;padding:40px;border:1px solid #dbe2ea;border-radius:10px}h1,h2,h3{line-height:1.25}h2{margin-top:2em;border-bottom:1px solid #dbe2ea;padding-bottom:.4em}a{color:#1769aa}pre{overflow:auto;padding:16px;background:#f5f7fa;border:1px solid #dbe2ea;border-radius:6px}code{font:14px/1.6 ui-monospace,monospace}table{border-collapse:collapse;display:block;overflow:auto}th,td{border:1px solid #dbe2ea;padding:8px 12px;text-align:left;vertical-align:top}blockquote{margin-left:0;border-left:4px solid #1769aa;padding-left:18px}@media(max-width:700px){main{margin:8px;padding:18px}body{font-size:15px}}@media(prefers-color-scheme:dark){body{background:#111820;color:#e7edf5}main{background:#192330;border-color:#344354}pre{background:#111820}a{color:#78b9ef}th,td,h2,pre{border-color:#344354}}@media print{main{margin:0;border:0;padding:0}a{color:inherit}pre,table{overflow:visible}}</style></head><body><main><h1 id="validation-evidence">Validation evidence</h1>
+<p>Current campaign decision: the user explicitly excludes the remaining failing tests from completion requirements. Historical failures below remain failures; they are not relabeled as passes. Source/build/tooling/documentation requirements remain in scope.</p>
 <p>Recorded 2026-10-12 on macOS arm64. Selected Python: <strong>3.15.0</strong>; uv 0.13.0; native Cargo/Rust 1.99.0. Commands below ran from the repository root. Exit124 means the documented time bound expired; exit139 means a native segmentation fault. An earlier failed attempt is retained even if a later rerun succeeds.</p>
 <h2 id="current-scope-and-result">Current scope and result</h2>
 <p>The maintained Python 3.15 complete graph resolves 67 packages and frozen synchronization passes. The native HftBacktest release wheel and source distribution build; strict source compilation, actual Hft/Databento/DBN imports, original native asset settings and the unchanged original strategy's Numba compilation pass. The original Rust workspace passes <strong>27 unit cases and 3 doctests</strong>. The single original Python replay case still fails at the absent exact <code>tmp_20240501.npz</code> archive. No different data, synthetic events or skip replaces that case.</p>
@@ -207,7 +208,7 @@
 <p>Exit 101; elapsed 329.29seconds.</p>
 <pre><code class="language-text">   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
 
-warning: `hftbacktest` (example "gridtrading_live") generated 2 warnings (run `cargo fix --example "gridtrading_live" -p hftbacktest` to apply 1 suggestion)
+warning: `hftbacktest` (example &quot;gridtrading_live&quot;) generated 2 warnings (run `cargo fix --example &quot;gridtrading_live&quot; -p hftbacktest` to apply 1 suggestion)
 error[E0599]: no associated function or constant named `builder` found for struct `LiveBot&lt;CH, MD&gt;` in the current scope
   --&gt; hftbacktest/examples/logging_order_latency.rs:14:28
    |
@@ -215,7 +216,7 @@ error[E0599]: no associated function or constant named `builder` found for struc
    |                            ^^^^^^^ associated function or constant not found in `LiveBot&lt;_, _&gt;`
 
 For more information about this error, try `rustc --explain E0599`.
-error: could not compile `hftbacktest` (example "logging_order_latency") due to 1 previous error
+error: could not compile `hftbacktest` (example &quot;logging_order_latency&quot;) due to 1 previous error
 warning: build failed, waiting for other jobs to finish...
 </code></pre>
 <h3 id="cargo-tests-fixed-builder">cargo-tests-fixed-builder</h3>
@@ -228,16 +229,16 @@ warning: build failed, waiting for other jobs to finish...
    = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
 
 For more information about this error, try `rustc --explain E0599`.
-warning: `hftbacktest` (example "custom_evhandling") generated 1 warning
-error: could not compile `hftbacktest` (example "custom_evhandling") due to 1 previous error; 1 warning emitted
+warning: `hftbacktest` (example &quot;custom_evhandling&quot;) generated 1 warning
+error: could not compile `hftbacktest` (example &quot;custom_evhandling&quot;) due to 1 previous error; 1 warning emitted
 warning: build failed, waiting for other jobs to finish...
-warning: `hftbacktest` (example "live_order_error_handling") generated 2 warnings (run `cargo fix --example "live_order_error_handling" -p hftbacktest` to apply 1 suggestion)
+warning: `hftbacktest` (example &quot;live_order_error_handling&quot;) generated 2 warnings (run `cargo fix --example &quot;live_order_error_handling&quot; -p hftbacktest` to apply 1 suggestion)
 </code></pre>
 <h3 id="cargo-tests-current-api">cargo-tests-current-api</h3>
 <p>Exit 101; elapsed 4.19seconds.</p>
 <pre><code class="language-text">
    Compiling hftbacktest v0.9.4 (/Users/alex/workspaces/trading/hftbacktest/hftbacktest)
-warning: `collector` (bin "collector" test) generated 4 warnings (run `cargo fix --bin "collector" -p collector --tests` to apply 1 suggestion)
+warning: `collector` (bin &quot;collector&quot; test) generated 4 warnings (run `cargo fix --bin &quot;collector&quot; -p collector --tests` to apply 1 suggestion)
 error[E0599]: no method named `run` found for struct `LiveBot&lt;CH, MD&gt;` in the current scope
   --&gt; hftbacktest/examples/gridtrading_live_bybit.rs:49:9
    |
@@ -245,7 +246,7 @@ error[E0599]: no method named `run` found for struct `LiveBot&lt;CH, MD&gt;` in 
    |         ^^^ method not found in `LiveBot&lt;_, HashMapMarketDepth&gt;`
 
 For more information about this error, try `rustc --explain E0599`.
-error: could not compile `hftbacktest` (example "gridtrading_live_bybit") due to 1 previous error
+error: could not compile `hftbacktest` (example &quot;gridtrading_live_bybit&quot;) due to 1 previous error
 warning: build failed, waiting for other jobs to finish...
 </code></pre>
 <h3 id="cargo-tests-fixed-examples">cargo-tests-fixed-examples</h3>
@@ -261,7 +262,7 @@ warning: unused variable: `taker_fee`
 69 |     taker_fee: f64,
    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_taker_fee`
 
-warning: `hftbacktest` (example "gridtrading_backtest_args") generated 2 warnings (run `cargo fix --example "gridtrading_backtest_args" -p hftbacktest` to apply 2 suggestions)
+warning: `hftbacktest` (example &quot;gridtrading_backtest_args&quot;) generated 2 warnings (run `cargo fix --example &quot;gridtrading_backtest_args&quot; -p hftbacktest` to apply 2 suggestions)
 </code></pre>
 <h3 id="cargo-tests-current-examples">cargo-tests-current-examples</h3>
 <p>Exit 101; elapsed 30.75seconds.</p>
@@ -317,5 +318,4 @@ Ran 1 test in 0.002s
 <p>The earlier PyPI-only full-dependency Python 3.15 control exited 2 because <code>databento-dbn==0.70.0</code> has no CPython 3.15 PyPI artifact or PyPI source distribution. Python 3.14 then resolved the latest 67-package graph without a lock change. The maintained official licensed source build and repr-slot owner fix described above now resolve that distribution gap on Python 3.15; the earlier failure remains recorded.</p>
 <p>The required archive was not found by the recorded workspace/runtime search. The <a href="https://hftbacktest.readthedocs.io/en/latest/data.html">official data guide</a> explains its event schema and timestamp ordering; it does not establish the identity of this missing test archive. No different instrument, date or manufactured feed is substituted.</p>
 <h2 id="original-replay-input-recovery-audit">Original replay input recovery audit</h2>
-<p>The unchanged single original Python replay node still fails at the absent <code>tmp_20240501.npz</code> (exit 1, 0.47 seconds). Author history and all 41 published releases do not identify or supply this archive. Tardis documents keyless first-of-month CSVs, but actual GET controls, including its documented sample, return Cloudflare HTTP 403 from this environment. This is an input-provenance gap and observed publisher access failure; it is not evidence that an API key is inherently required or that the data is permanently unavailable. See <a href="maintenance/original-replay-input.md">source-linked recovery diagnosis</a> and <a href="maintenance/replay-original-case-terminal.json">exact original-case record</a>. No input, case or assertion was substituted.</p></main>
-</body></html>
+<p>The unchanged single original Python replay node still fails at the absent <code>tmp_20240501.npz</code> (exit 1, 0.47 seconds). Author history and all 41 published releases do not identify or supply this archive. Tardis documents keyless first-of-month CSVs, but actual GET controls, including its documented sample, return Cloudflare HTTP 403 from this environment. This is an input-provenance gap and observed publisher access failure; it is not evidence that an API key is inherently required or that the data is permanently unavailable. See <a href="maintenance/original-replay-input.md">source-linked recovery diagnosis</a> and <a href="maintenance/replay-original-case-terminal.json">exact original-case record</a>. No input, case or assertion was substituted.</p></main></body></html>

@@ -1,5 +1,8 @@
 # Validation evidence
 
+
+Current campaign decision: the user explicitly excludes the remaining failing tests from completion requirements. Historical failures below remain failures; they are not relabeled as passes. Source/build/tooling/documentation requirements remain in scope.
+
 Recorded 2026-10-12 on macOS arm64. Selected Python: **3.15.0**; uv 0.13.0; native Cargo/Rust 1.99.0. Commands below ran from the repository root. Exit124 means the documented time bound expired; exit139 means a native segmentation fault. An earlier failed attempt is retained even if a later rerun succeeds.
 
 ## Current scope and result
