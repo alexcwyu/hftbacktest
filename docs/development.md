@@ -1,5 +1,11 @@
 # Current maintained uv workflow
 
+<!-- current-documentation-provenance -->
+Documentation reviewed: 2026-10-13 / Git source base: `88fb0ea437128d75a7c33e12e9bb4b2323b8e219` / [Current architecture and feature guide](ayu-develop.md).
+Historical execution commands/results below retain their original dates and scope; this metadata update is not a new application test run.
+<!-- /current-documentation-provenance -->
+
+
 The selected complete Python environment is CPython 3.15.0. The complete 67-package graph builds current Databento DBN from licensed source, including the narrow PyO3 repr registration repair described below. The original 27 Rust unit cases and 3 doctests pass; the Python replay case still requires its missing original archive.
 
 ```sh
